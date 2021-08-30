@@ -8,9 +8,11 @@ import 'package:happiness_daily_flutter/page/home.dart';
 Future main() async {
   await dotenv.load(fileName: "assets/.env");
   KakaoContext.clientId = dotenv.env['KAKAO_CLIENTID'] as String;
-  KakaoContext.javascriptClientId = dotenv.env['KAKAO_JAVASCRIPT_CLIENTID'] as String;
+  KakaoContext.javascriptClientId =
+      dotenv.env['KAKAO_JAVASCRIPT_CLIENTID'] as String;
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
