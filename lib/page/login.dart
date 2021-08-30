@@ -39,8 +39,8 @@ class _KakaoLoginState extends State<LoginPage> {
           : await AuthCodeClient.instance.request();
       AccessTokenResponse token =
           await AuthApi.instance.issueAccessToken(authCode);
-      AccessTokenStore.instance.toStore(
-          token); // Store access token in AccessTokenStore for future API requests.
+      AccessTokenStore.instance.toStore(token);
+      // Store access token in AccessTokenStore for future API requests.
     } catch (e) {
       // some error happened during the course of user login... deal with it.
     }
