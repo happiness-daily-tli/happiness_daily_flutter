@@ -33,6 +33,8 @@ dependencies:
   flutter_native_splash: ^1.2.1
   flutter_svg: 0.22.0
   carousel_slider: ^4.0.0
+  vrouter: ^1.2.0
+  hooks_riverpod: ^1.0.0-dev.7
 
 dev_dependencies:
   flutter_test:

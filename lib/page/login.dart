@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:vrouter/vrouter.dart';
 
 final List<String> imgList = [
   "assets/login_0.png",
@@ -23,9 +24,25 @@ class _KakaoLoginState extends State<LoginPage> {
           ? await UserApi.instance.loginWithKakaoTalk()
           : await UserApi.instance.loginWithKakaoAccount();
       // perform actions after login
-      Navigator.pushNamed(context, '/');
+      loginButtonClicked(installed);
+      context.vRouter.to('/home');
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  void loginButtonClicked(installed) async {
+    try {
+      print(installed);
+      String authCode = installed
+          ? await AuthCodeClient.instance.requestWithTalk()
+          : await AuthCodeClient.instance.request();
+      AccessTokenResponse token =
+          await AuthApi.instance.issueAccessToken(authCode);
+      AccessTokenStore.instance.toStore(
+          token); // Store access token in AccessTokenStore for future API requests.
+    } catch (e) {
+      // some error happened during the course of user login... deal with it.
     }
   }
 
