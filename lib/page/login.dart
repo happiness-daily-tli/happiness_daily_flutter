@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/all.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
+final List<String> imgList = [
+  "assets/login_0.png",
+  "assets/login_1.png",
+  "assets/login_2.png"
+];
 
 class LoginPage extends StatefulWidget {
   @override
@@ -24,35 +32,68 @@ class _KakaoLoginState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text('로그인'),
-        ),
-        body: Center(
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Builder(
+            builder: (context) {
+              final double height = MediaQuery.of(context).size.height;
+              return CarouselSlider(
+                options: CarouselOptions(
+                  height: height,
+                  viewportFraction: 1,
+                  enlargeCenterPage: false,
+                  autoPlay: true,
+                ),
+                items: imgList
+                    .map(
+                      (item) => Container(
+                        child: Center(
+                          child: Image(
+                            height: height,
+                            image: AssetImage(item),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
+              );
+            },
+          ),
+          Positioned(
+            bottom: MediaQuery.of(context).size.height * 0.2,
             child: InkWell(
-          onTap: () => _login(),
-          child: Container(
-              width: MediaQuery.of(context).size.width * 0.6,
-              height: MediaQuery.of(context).size.height * 0.07,
-              decoration: BoxDecoration(
+              onTap: () => _login(),
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.height * 0.07,
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.yellow),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.chat_bubble, color: Colors.black54),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    '카카오계정 로그인',
-                    style: TextStyle(
+                  color: Colors.yellow,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset('assets/kakao.svg'),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      '카카오 로그인',
+                      style: TextStyle(
                         color: Colors.black54,
                         fontWeight: FontWeight.w900,
-                        fontSize: 20),
-                  ),
-                ],
-              )),
-        )));
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
