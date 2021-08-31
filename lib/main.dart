@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_daily_flutter/page/setting.dart';
 import 'package:happiness_daily_flutter/state/user.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:happiness_daily_flutter/page/login.dart';
 import 'package:happiness_daily_flutter/page/home.dart';
@@ -17,10 +19,21 @@ Future main() async {
 }
 
 class MyApp extends ConsumerWidget {
-  // This widget is the root of your application.
+  _setUserName(state) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? username = prefs.getString('username');
+
+    if (username != null) {
+      state = username;
+    } else {
+      state = '';
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
+    var user = ref.read(userProvider);
+    _setUserName(user.state);
 
     return VRouter(
       routes: [
@@ -28,8 +41,10 @@ class MyApp extends ConsumerWidget {
           beforeEnter: (vRedirector) async {
             final token = await AccessTokenStore.instance.fromStore();
             print(token);
-            if (token.refreshToken == null) vRedirector.to('/login');
-            print(user);
+            print(user.state);
+            if (token.refreshToken == null)
+              vRedirector.to('/login');
+            else if (user.state == '') vRedirector.to('/setting');
           },
           stackedRoutes: [
             VWidget(path: '/', widget: HomePage()),
@@ -38,6 +53,10 @@ class MyApp extends ConsumerWidget {
         VWidget(
           path: '/login',
           widget: LoginPage(),
+        ),
+        VWidget(
+          path: '/setting',
+          widget: SettingPage(),
         ),
       ],
     );

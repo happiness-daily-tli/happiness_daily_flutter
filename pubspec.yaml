@@ -35,6 +35,7 @@ dependencies:
   carousel_slider: ^4.0.0
   vrouter: ^1.2.0
   hooks_riverpod: ^1.0.0-dev.7
+  shared_preferences: 2.0.7
 
 dev_dependencies:
   flutter_test:
