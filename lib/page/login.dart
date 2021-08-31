@@ -3,6 +3,7 @@ import 'package:kakao_flutter_sdk/all.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:vrouter/vrouter.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 final List<String> imgList = [
   "assets/login_0.png",
@@ -33,7 +34,6 @@ class _KakaoLoginState extends State<LoginPage> {
 
   void loginButtonClicked(installed) async {
     try {
-      print(installed);
       String authCode = installed
           ? await AuthCodeClient.instance.requestWithTalk()
           : await AuthCodeClient.instance.request();
@@ -43,6 +43,7 @@ class _KakaoLoginState extends State<LoginPage> {
       // Store access token in AccessTokenStore for future API requests.
     } catch (e) {
       // some error happened during the course of user login... deal with it.
+      print(e.toString());
     }
   }
 
@@ -81,7 +82,21 @@ class _KakaoLoginState extends State<LoginPage> {
           Positioned(
             bottom: MediaQuery.of(context).size.height * 0.2,
             child: InkWell(
-              onTap: () => _login(),
+              onTap: () => kIsWeb
+                  ? showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Web에서는 로그인을 할 수 없어요.'),
+                        content: const Text('모바일을 이용해주세요!'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('확인'),
+                          ),
+                        ],
+                      ),
+                    )
+                  : _login(),
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.9,
                 height: MediaQuery.of(context).size.height * 0.07,
