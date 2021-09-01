@@ -4,6 +4,8 @@ import 'package:happiness_daily_flutter/state/user.dart';
 import 'package:kakao_flutter_sdk/link.dart';
 
 class SettingPage extends ConsumerWidget {
+  final userNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider);
@@ -49,6 +51,7 @@ class SettingPage extends ConsumerWidget {
                         errorBorder: InputBorder.none,
                         disabledBorder: InputBorder.none,
                       ),
+                      controller: userNameController,
                     ),
                   ),
                 ],
@@ -57,19 +60,24 @@ class SettingPage extends ConsumerWidget {
             SizedBox(
               height: 50,
             ),
-            Container(
-              height: 52,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                color: Color(0xff6b53ff),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              child: Center(
-                child: Text('행복일기 시작하기',
+            InkWell(
+              onTap: () => print(userNameController.text),
+              child: Container(
+                height: 52,
+                width: MediaQuery.of(context).size.width * 0.9,
+                decoration: BoxDecoration(
+                  color: Color(0xff6b53ff),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                child: Center(
+                  child: Text(
+                    '행복일기 시작하기',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                    )),
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

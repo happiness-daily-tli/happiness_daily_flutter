@@ -19,32 +19,37 @@ Future main() async {
 }
 
 class MyApp extends ConsumerWidget {
-  _setUserName(state) async {
+  _setUserName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? username = prefs.getString('username');
 
     if (username != null) {
-      state = username;
+      return username;
     } else {
-      state = '';
+      return '';
     }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var user = ref.read(userProvider);
-    _setUserName(user.state);
+    var isFirstEntry = true;
 
     return VRouter(
       routes: [
         VGuard(
           beforeEnter: (vRedirector) async {
-            final token = await AccessTokenStore.instance.fromStore();
-            print(token);
-            print(user.state);
-            if (token.refreshToken == null)
-              vRedirector.to('/login');
-            else if (user.state == '') vRedirector.to('/setting');
+            print('beforeEnter');
+            if (isFirstEntry) {
+              final token = await AccessTokenStore.instance.fromStore();
+              print(token);
+              final user = ref.read(userProvider);
+              print(user.state);
+              user.state = await _setUserName();
+              if (token.refreshToken == null)
+                vRedirector.to('/login');
+              else if (user.state == '') vRedirector.to('/setting');
+              isFirstEntry = false;
+            }
           },
           stackedRoutes: [
             VWidget(path: '/', widget: HomePage()),

@@ -17,23 +17,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _KakaoLoginState extends State<LoginPage> {
+  // _login() async {
+  //   try {
+  //     final installed = await isKakaoTalkInstalled();
+  //     print('kakao Install : ' + installed.toString());
+  //     installed
+  //         ? await UserApi.instance.loginWithKakaoTalk()
+  //         : await UserApi.instance.loginWithKakaoAccount();
+  //     // perform actions after login\
+  //     context.vRouter.to('/home');
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
+
   _login() async {
     try {
       final installed = await isKakaoTalkInstalled();
       print('kakao Install : ' + installed.toString());
-      installed
-          ? await UserApi.instance.loginWithKakaoTalk()
-          : await UserApi.instance.loginWithKakaoAccount();
-      // perform actions after login
-      loginButtonClicked(installed);
-      context.vRouter.to('/home');
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  void loginButtonClicked(installed) async {
-    try {
       String authCode = installed
           ? await AuthCodeClient.instance.requestWithTalk()
           : await AuthCodeClient.instance.request();
@@ -41,6 +42,7 @@ class _KakaoLoginState extends State<LoginPage> {
           await AuthApi.instance.issueAccessToken(authCode);
       AccessTokenStore.instance.toStore(token);
       // Store access token in AccessTokenStore for future API requests.
+      context.vRouter.to('/');
     } catch (e) {
       // some error happened during the course of user login... deal with it.
       print(e.toString());
