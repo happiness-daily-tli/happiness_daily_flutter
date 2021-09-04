@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:happiness_daily_flutter/state/user.dart';
-import 'package:kakao_flutter_sdk/link.dart';
+import 'package:vrouter/vrouter.dart';
 
 class SettingPage extends ConsumerWidget {
   final userNameController = TextEditingController();
@@ -16,6 +16,13 @@ class SettingPage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            CircleAvatar(
+              backgroundColor: Colors.brown.shade800,
+              child: const Text('AH'),
+            ),
+            SizedBox(
+              height: 50,
+            ),
             Container(
               height: 52,
               width: MediaQuery.of(context).size.width * 0.9,
@@ -61,7 +68,7 @@ class SettingPage extends ConsumerWidget {
               height: 50,
             ),
             InkWell(
-              onTap: () => print(userNameController.text),
+              onTap: () => context.vRouter.to('/'),
               child: Container(
                 height: 52,
                 width: MediaQuery.of(context).size.width * 0.9,

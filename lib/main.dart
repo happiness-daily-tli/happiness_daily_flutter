@@ -40,15 +40,15 @@ class MyApp extends ConsumerWidget {
           beforeEnter: (vRedirector) async {
             print('beforeEnter');
             if (isFirstEntry) {
+              isFirstEntry = false;
               final token = await AccessTokenStore.instance.fromStore();
               print(token);
+              if (token.refreshToken == null) vRedirector.to('/login');
+
               final user = ref.read(userProvider);
               print(user.state);
               user.state = await _setUserName();
-              if (token.refreshToken == null)
-                vRedirector.to('/login');
-              else if (user.state == '') vRedirector.to('/setting');
-              isFirstEntry = false;
+              if (user.state == '') vRedirector.to('/setting');
             }
           },
           stackedRoutes: [
