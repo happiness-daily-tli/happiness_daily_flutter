@@ -19,7 +19,7 @@ Future main() async {
 }
 
 class MyApp extends ConsumerWidget {
-  _setUserName() async {
+  _getUserName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? username = prefs.getString('username');
 
@@ -38,17 +38,14 @@ class MyApp extends ConsumerWidget {
       routes: [
         VGuard(
           beforeEnter: (vRedirector) async {
-            print('beforeEnter');
             if (isFirstEntry) {
               isFirstEntry = false;
               final token = await AccessTokenStore.instance.fromStore();
-              print(token);
               if (token.refreshToken == null) vRedirector.to('/login');
 
               final user = ref.read(userProvider);
-              print(user.state);
-              user.state = await _setUserName();
-              if (user.state == '') vRedirector.to('/setting');
+              user.state = await _getUserName();
+              if (user.state != '') vRedirector.to('/setting');
             }
           },
           stackedRoutes: [
