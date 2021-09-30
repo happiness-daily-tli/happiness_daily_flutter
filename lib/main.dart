@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/page/setting.dart';
-import 'package:happiness_daily_flutter/state/user.dart';
+import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:vrouter/vrouter.dart';
@@ -23,29 +23,43 @@ class MyApp extends ConsumerWidget {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? username = prefs.getString('username');
 
-    if (username != null) {
-      return username;
-    } else {
-      return '';
-    }
+    return username != null ? username : '';
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var isFirstEntry = true;
+    var testMode = false;
+    var testUserName = true;
 
     return VRouter(
       routes: [
         VGuard(
           beforeEnter: (vRedirector) async {
-            if (isFirstEntry) {
-              isFirstEntry = false;
-              final token = await AccessTokenStore.instance.fromStore();
-              if (token.refreshToken == null) vRedirector.to('/login');
-
-              final user = ref.read(userProvider);
-              user.state = await _getUserName();
-              if (user.state != '') vRedirector.to('/setting');
+            if (testMode) {
+              if (isFirstEntry) {
+                vRedirector.to('/login');
+                isFirstEntry = false;
+              } else if (testUserName) {
+                vRedirector.to('/setting');
+                testUserName = false;
+              }
+            } else {
+              if (isFirstEntry) {
+                final token = await AccessTokenStore.instance.fromStore();
+                if (token.refreshToken == null) {
+                  vRedirector.to('/login');
+                  return;
+                }
+                final user = ref.read(userProvider);
+                user.state = await _getUserName();
+                print(user.state);
+                if (user.state == '') {
+                  vRedirector.to('/setting');
+                  return;
+                }
+                isFirstEntry = false;
+              }
             }
           },
           stackedRoutes: [

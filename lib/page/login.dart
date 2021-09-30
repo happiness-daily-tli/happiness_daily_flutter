@@ -17,20 +17,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _KakaoLoginState extends State<LoginPage> {
-  // _login() async {
-  //   try {
-  //     final installed = await isKakaoTalkInstalled();
-  //     print('kakao Install : ' + installed.toString());
-  //     installed
-  //         ? await UserApi.instance.loginWithKakaoTalk()
-  //         : await UserApi.instance.loginWithKakaoAccount();
-  //     // perform actions after login\
-  //     context.vRouter.to('/home');
-  //   } catch (e) {
-  //     print(e.toString());
-  //   }
-  // }
-
   _login() async {
     try {
       final installed = await isKakaoTalkInstalled();
