@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:happiness_daily_flutter/state/index.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:happiness_daily_flutter/component/common/Footer.dart';
 
-class HomePage extends ConsumerWidget {
+class HomePage extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
-    final tabIndex = ref.watch(tabIndexProvider);
-
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            Image.asset("assets/home/background.png"),
             Container(
-              height: 20.0,
-              color: Colors.red,
+              height: 100,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10.0)),
             ),
             Text('TEST'),
             Text('TEST'),
@@ -34,50 +32,7 @@ class HomePage extends ConsumerWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.only(top: 0, bottom: 0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
-        height: 83,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: Colors.white,
-              selectedItemColor: Colors.black,
-              unselectedItemColor: Colors.black.withOpacity(.60),
-              selectedFontSize: 10,
-              unselectedFontSize: 10, //현재 선택된 Index
-              elevation: 0,
-              onTap: (int index) => tabIndex.state = index,
-              currentIndex: tabIndex.state,
-              items: [
-                BottomNavigationBarItem(
-                  label: '나의행복',
-                  icon: SvgPicture.asset('assets/tab_0.svg'),
-                  activeIcon: SvgPicture.asset('assets/tab_0_active.svg'),
-                ),
-                BottomNavigationBarItem(
-                  label: '행복찾기',
-                  icon: SvgPicture.asset('assets/tab_1.svg'),
-                  activeIcon: SvgPicture.asset('assets/tab_1_active.svg'),
-                ),
-                BottomNavigationBarItem(
-                  label: '우리의행복',
-                  icon: SvgPicture.asset('assets/tab_2.svg'),
-                  activeIcon: SvgPicture.asset('assets/tab_2_active.svg'),
-                ),
-              ],
-            ),
-            Container(
-              height: 20,
-              color: Colors.white,
-            )
-          ],
-        ),
-      ),
+      bottomNavigationBar: Footer(),
     );
   }
 }
