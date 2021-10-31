@@ -9,11 +9,10 @@ class Footer extends ConsumerWidget {
     final tabIndex = ref.watch(tabIndexProvider);
 
     return Container(
-      padding: EdgeInsets.only(top: 0, bottom: 0),
       decoration: BoxDecoration(
         color: Colors.white,
       ),
-      height: 83,
+      height: 90,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -45,10 +44,10 @@ class Footer extends ConsumerWidget {
               ),
             ],
           ),
-          Container(
-            height: 20,
-            color: Colors.white,
-          )
+          // Container(
+          //   height: 20,
+          //   color: Colors.white,
+          // )
         ],
       ),
     );

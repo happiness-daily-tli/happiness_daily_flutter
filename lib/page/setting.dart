@@ -58,7 +58,9 @@ class SettingPage extends ConsumerWidget {
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
                 border: Border.all(
                   width: 1,
                   color: Colors.black,
@@ -80,8 +82,10 @@ class SettingPage extends ConsumerWidget {
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: '닉네임을 입력해주세요',
-                        hintStyle:
-                            TextStyle(fontSize: 14, color: Color(0xff999999)),
+                        hintStyle: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xff999999),
+                        ),
                         border: InputBorder.none,
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,
