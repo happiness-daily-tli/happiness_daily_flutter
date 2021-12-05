@@ -32,7 +32,7 @@ class HomePage extends ConsumerWidget {
                       child: Container(
                         width: 150,
                         height: 76,
-                        padding: EdgeInsets.only(bottom: 12),
+                        padding: EdgeInsets.fromLTRB(10, 16, 10, 28),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
                           boxShadow: [
@@ -48,13 +48,10 @@ class HomePage extends ConsumerWidget {
                             image: AssetImage('assets/home/speech_bubble.png'),
                           ),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text('행복하려고 마음 먹은 만큼'),
-                            Text('행복해질 수 있어요.')
-                          ],
+                        child: Text(
+                          '행복하려고 마음 먹은 만큼 행복해질 수 있어요.',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.subtitle2,
                         ),
                       ),
                     ),
@@ -71,19 +68,17 @@ class HomePage extends ConsumerWidget {
                           children: [
                             Row(
                               children: [
-                                const Text.rich(
+                                Text.rich(
                                   TextSpan(
                                     text: '나의 행복지수',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
                                     children: <TextSpan>[
                                       TextSpan(
                                         text: ' Lv.1',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF6B53FF),
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
                                       ),
                                     ],
                                   ),
@@ -106,33 +101,31 @@ class HomePage extends ConsumerWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10)),
                                     child: LinearProgressIndicator(
-                                      value: 0.4622,
+                                      value: 0.2,
                                       color: Color(0xFF6B53FF),
                                       backgroundColor: Colors.white,
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 23, right: 26, top: 6),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 23.0, vertical: 3.0),
                                   child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         '2개',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6!
+                                            .apply(color: Colors.white),
                                       ),
-                                      Spacer(),
                                       Text(
                                         '10개',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF6B53FF),
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
                                       ),
                                     ],
                                   ),
@@ -165,20 +158,13 @@ class HomePage extends ConsumerWidget {
                                 children: [
                                   Text(
                                     '나의 행복기록',
-                                    style: TextStyle(
-                                      color: Color(0xFF1A1A1A),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.headline2,
                                   ),
                                   Spacer(),
                                   Text(
                                     '2021.07',
-                                    style: TextStyle(
-                                      color: Color(0xFF999999),
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 14,
-                                    ),
+                                    style: Theme.of(context).textTheme.caption,
                                   ),
                                   SvgPicture.asset('assets/home/more.svg'),
                                 ],

@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'happiness_theme.dart';
 
 import 'package:happiness_daily_flutter/page/login.dart';
 import 'package:happiness_daily_flutter/page/home.dart';
@@ -15,7 +16,11 @@ Future main() async {
   KakaoContext.clientId = dotenv.env['KAKAO_CLIENTID'] as String;
   KakaoContext.javascriptClientId =
       dotenv.env['KAKAO_JAVASCRIPT_CLIENTID'] as String;
-  runApp(ProviderScope(child: MyApp()));
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends ConsumerWidget {
@@ -28,11 +33,13 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = HappinessTheme.light();
     var isFirstEntry = true;
     var testMode = false;
     var testUserName = true;
 
     return VRouter(
+      theme: theme,
       routes: [
         VGuard(
           beforeEnter: (vRedirector) async {
@@ -53,7 +60,6 @@ class MyApp extends ConsumerWidget {
                 }
                 final user = ref.read(userProvider);
                 user.state = await _getUserName();
-                print(user.state);
                 if (user.state == '') {
                   vRedirector.to('/setting');
                   return;
