@@ -17,6 +17,7 @@ class HomePage extends ConsumerWidget {
             child: TickerMode(
               enabled: tabIndex.state == 0,
               child: SingleChildScrollView(
+                physics: ClampingScrollPhysics(),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
