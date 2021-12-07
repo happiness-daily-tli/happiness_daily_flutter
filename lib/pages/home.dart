@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:happiness_daily_flutter/component/common/Footer.dart';
+import 'package:happiness_daily_flutter/components/common/Footer.dart';
 import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -63,27 +63,29 @@ class HomePage extends ConsumerWidget {
                         height: 76,
                         margin: EdgeInsets.symmetric(horizontal: 20),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text.rich(
-                                  TextSpan(
-                                    text: '나의 행복지수',
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1,
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: ' Lv.1',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline5,
-                                      ),
-                                    ],
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: Text.rich(
+                                    TextSpan(
+                                      text: '나의 행복지수',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: ' Lv.1',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                Spacer(),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 20,
@@ -169,6 +171,7 @@ class HomePage extends ConsumerWidget {
                                   SvgPicture.asset('assets/home/more.svg'),
                                 ],
                               ),
+                              Text('here'),
                             ],
                           ),
                         ),

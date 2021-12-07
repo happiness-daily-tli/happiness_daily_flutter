@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:happiness_daily_flutter/page/setting.dart';
+import 'package:happiness_daily_flutter/pages/setting.dart';
 import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,8 +8,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'happiness_theme.dart';
 
-import 'package:happiness_daily_flutter/page/login.dart';
-import 'package:happiness_daily_flutter/page/home.dart';
+import 'package:happiness_daily_flutter/pages/login.dart';
+import 'package:happiness_daily_flutter/pages/home.dart';
 
 Future main() async {
   await dotenv.load(fileName: "assets/.env");
