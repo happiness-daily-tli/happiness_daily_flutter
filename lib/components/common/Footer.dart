@@ -29,18 +29,21 @@ class Footer extends ConsumerWidget {
             items: [
               BottomNavigationBarItem(
                 label: '나의행복',
-                icon: SvgPicture.asset('assets/footer/tab_0.svg'),
-                activeIcon: SvgPicture.asset('assets/footer/tab_0_active.svg'),
+                icon: SvgPicture.asset('assets/images/footer/tab_0.svg'),
+                activeIcon:
+                    SvgPicture.asset('assets/images/footer/tab_0_active.svg'),
               ),
               BottomNavigationBarItem(
                 label: '행복찾기',
-                icon: SvgPicture.asset('assets/footer/tab_1.svg'),
-                activeIcon: SvgPicture.asset('assets/footer/tab_1_active.svg'),
+                icon: SvgPicture.asset('assets/images/footer/tab_1.svg'),
+                activeIcon:
+                    SvgPicture.asset('assets/images/footer/tab_1_active.svg'),
               ),
               BottomNavigationBarItem(
                 label: '우리의행복',
-                icon: SvgPicture.asset('assets/footer/tab_2.svg'),
-                activeIcon: SvgPicture.asset('assets/footer/tab_2_active.svg'),
+                icon: SvgPicture.asset('assets/images/footer/tab_2.svg'),
+                activeIcon:
+                    SvgPicture.asset('assets/images/footer/tab_2_active.svg'),
               ),
             ],
           ),

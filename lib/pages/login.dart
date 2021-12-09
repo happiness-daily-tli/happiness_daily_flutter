@@ -6,9 +6,9 @@ import 'package:vrouter/vrouter.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 final List<String> imgList = [
-  "assets/login/login_0.png",
-  "assets/login/login_1.png",
-  "assets/login/login_2.png"
+  "assets/images/login/login_0.png",
+  "assets/images/login/login_1.png",
+  "assets/images/login/login_2.png"
 ];
 
 class LoginPage extends StatefulWidget {
@@ -95,7 +95,7 @@ class _KakaoLoginState extends State<LoginPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SvgPicture.asset('assets/login/kakao.svg'),
+                    SvgPicture.asset('assets/images/login/kakao.svg'),
                     SizedBox(
                       width: 4,
                     ),

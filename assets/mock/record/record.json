@@ -1,0 +1,178 @@
+{
+    "data": [
+        {
+            "id": "1",
+            "user": [
+                {
+                    "name": "유니콘",
+                    "iconUrl": "assets/images/common/user/icon_0.png"
+                }
+            ],
+            "content": "방역수칙이 4단계로 격상했다.... 코로나 언제 사라져 ㅠㅠ",
+            "weather": "흐림",
+            "date": "2021-07-24",
+            "isLock": false,
+            "heartCount": 2,
+            "comment": [
+                {
+                    "user": {
+                        "name": "이성용",
+                        "iconUrl": "assets/images/common/user/icon_2.png"
+                    },
+                    "date": "2021-07-24",
+                    "content": "힘내요 화이팅",
+                    "heartCount": 2
+                },
+                {
+                    "user": {
+                        "name": "감민태",
+                        "iconUrl": "assets/images/common/user/icon_1.png"
+                    },
+                    "date": "2021-07-24",
+                    "content": "유니콘 귀여워요",
+                    "heartCount": 2
+                },
+                {
+                    "user": {
+                        "name": "이경주",
+                        "iconUrl": "assets/images/common/user/icon_0.png"
+                    },
+                    "date": "2021-07-24",
+                    "content": "굿굿굿굿",
+                    "heartCount": 2
+                },
+                {
+                    "user": {
+                        "name": "최정균",
+                        "iconUrl": ""
+                    },
+                    "date": "2021-07-24",
+                    "content": "사진 예뻐요",
+                    "heartCount": 2
+                }
+            ],
+            "imageUrl": [
+                "assets/mock/record/image_0.png",
+                "assets/mock/record/image_1.png",
+                "assets/mock/record/image_2.png"
+            ],
+            "hashtag": ["코로나사라져"]
+        },
+        {
+            "id": "1",
+            "user": [
+                {
+                    "name": "유니콘",
+                    "iconUrl": "assets/images/common/user/icon_0.png"
+                }
+            ],
+            "content": "방역수칙이 4단계로 격상했다.... 코로나 언제 사라져 ㅠㅠ",
+            "weather": "흐림",
+            "date": "2021-07-24",
+            "isLock": false,
+            "heartCount": 2,
+            "comment": [
+                {
+                    "user": {
+                        "name": "이성용",
+                        "iconUrl": "assets/images/common/user/icon_2.png"
+                    },
+                    "date": "2021-07-24",
+                    "content": "힘내요 화이팅",
+                    "heartCount": 2
+                },
+                {
+                    "user": {
+                        "name": "감민태",
+                        "iconUrl": "assets/images/common/user/icon_1.png"
+                    },
+                    "date": "2021-07-24",
+                    "content": "유니콘 귀여워요",
+                    "heartCount": 2
+                },
+                {
+                    "user": {
+                        "name": "이경주",
+                        "iconUrl": "assets/images/common/user/icon_0.png"
+                    },
+                    "date": "2021-07-24",
+                    "content": "굿굿굿굿",
+                    "heartCount": 2
+                },
+                {
+                    "user": {
+                        "name": "최정균",
+                        "iconUrl": ""
+                    },
+                    "date": "2021-07-24",
+                    "content": "사진 예뻐요",
+                    "heartCount": 2
+                }
+            ],
+            "imageUrl": [
+                "assets/mock/record/image_0.png",
+                "assets/mock/record/image_1.png",
+                "assets/mock/record/image_2.png"
+            ],
+            "hashtag": ["코로나사라져"]
+        },
+        {
+            "id": "1",
+            "user": [
+                {
+                    "name": "유니콘",
+                    "iconUrl": "assets/images/common/user/icon_0.png"
+                }
+            ],
+            "content": "방역수칙이 4단계로 격상했다.... 코로나 언제 사라져 ㅠㅠ",
+            "weather": "흐림",
+            "date": "2021-07-24",
+            "isLock": false,
+            "heartCount": 2,
+            "comment": [
+                {
+                    "user": {
+                        "name": "이성용",
+                        "iconUrl": "assets/images/common/user/icon_2.png"
+                    },
+                    "date": "2021-07-24",
+                    "content": "힘내요 화이팅",
+                    "heartCount": 2
+                },
+                {
+                    "user": {
+                        "name": "감민태",
+                        "iconUrl": "assets/images/common/user/icon_1.png"
+                    },
+                    "date": "2021-07-24",
+                    "content": "유니콘 귀여워요",
+                    "heartCount": 2
+                },
+                {
+                    "user": {
+                        "name": "이경주",
+                        "iconUrl": "assets/images/common/user/icon_0.png"
+                    },
+                    "date": "2021-07-24",
+                    "content": "굿굿굿굿",
+                    "heartCount": 2
+                },
+                {
+                    "user": {
+                        "name": "최정균",
+                        "iconUrl": ""
+                    },
+                    "date": "2021-07-24",
+                    "content": "사진 예뻐요",
+                    "heartCount": 2
+                }
+            ],
+            "imageUrl": [
+                "assets/mock/record/image_0.png",
+                "assets/mock/record/image_1.png",
+                "assets/mock/record/image_2.png"
+            ],
+            "hashtag": ["코로나사라져"]
+        }
+    ]
+}

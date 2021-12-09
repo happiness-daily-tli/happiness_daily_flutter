@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:happiness_daily_flutter/components/common/Footer.dart';
+import 'package:happiness_daily_flutter/models/record.dart';
 import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -8,6 +9,7 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tabIndex = ref.watch(tabIndexProvider);
+    AsyncValue<List<Record>> record = ref.watch(recordProvider);
 
     return Scaffold(
       body: Stack(
@@ -24,7 +26,7 @@ class HomePage extends ConsumerWidget {
                     Container(
                       height: 1000,
                       alignment: Alignment.topCenter,
-                      child: Image.asset("assets/home/background.png"),
+                      child: Image.asset("assets/images/home/background.png"),
                     ),
                     Positioned(
                       top: 171,
@@ -45,7 +47,8 @@ class HomePage extends ConsumerWidget {
                           ],
                           image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: AssetImage('assets/home/speech_bubble.png'),
+                            image: AssetImage(
+                                'assets/images/home/speech_bubble.png'),
                           ),
                         ),
                         child: Text(
@@ -90,8 +93,8 @@ class HomePage extends ConsumerWidget {
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 20,
                                   ),
-                                  child:
-                                      SvgPicture.asset('assets/home/flag.svg'),
+                                  child: SvgPicture.asset(
+                                      'assets/images/home/flag.svg'),
                                 ),
                               ],
                             ),
@@ -168,10 +171,18 @@ class HomePage extends ConsumerWidget {
                                     '2021.07',
                                     style: Theme.of(context).textTheme.caption,
                                   ),
-                                  SvgPicture.asset('assets/home/more.svg'),
+                                  SvgPicture.asset(
+                                      'assets/images/home/more.svg'),
                                 ],
                               ),
-                              Text('here'),
+                              record.when(
+                                loading: () =>
+                                    const CircularProgressIndicator(),
+                                error: (err, stack) => Text('Error: $err'),
+                                data: (record) {
+                                  return Text('${record.length}');
+                                },
+                              ),
                             ],
                           ),
                         ),
