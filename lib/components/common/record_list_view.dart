@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:happiness_daily_flutter/components/home/record_tile.dart';
+import 'record_tile.dart';
 import 'package:happiness_daily_flutter/models/record.dart';
 
 class RecordListView extends StatelessWidget {
@@ -14,12 +14,13 @@ class RecordListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: EdgeInsets.zero,
-      primary: true,
-      scrollDirection: Axis.vertical,
+      primary: false,
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemCount: recordList.length,
       itemBuilder: (context, index) {
-        final volunteer = recordList[index];
-        return RecordTile(record: volunteer);
+        final record = recordList[index];
+        return RecordTile(record: record);
       },
     );
   }

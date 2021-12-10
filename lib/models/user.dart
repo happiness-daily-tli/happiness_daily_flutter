@@ -9,8 +9,8 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      name: json['id'] ?? String,
-      iconUrl: json['id'] ?? String,
+      name: json['name'] as String,
+      iconUrl: json['iconUrl'] as String,
     );
   }
 }

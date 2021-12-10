@@ -1,9 +1,8 @@
 import 'package:happiness_daily_flutter/models/comment.dart';
-import 'package:happiness_daily_flutter/models/user.dart';
 
 class Record {
   String id;
-  List user;
+  Map<String, dynamic> user;
   String content;
   String weather;
   String date;
@@ -28,13 +27,13 @@ class Record {
 
   factory Record.fromJson(Map<String, dynamic> json) {
     return Record(
-      id: json['id'] ?? String,
-      user: json['user'] ?? User,
-      content: json['content'] ?? String,
-      weather: json['weather'] ?? String,
-      date: json['date'] ?? String,
-      isLock: json['isLock'] ?? bool,
-      heartCount: json['heartCount'] ?? int,
+      id: json['id'] as String,
+      user: json['user'] as Map<String, dynamic>,
+      content: json['content'] as String,
+      weather: json['weather'] as String,
+      date: json['date'] as String,
+      isLock: json['isLock'] as bool,
+      heartCount: json['heartCount'] as int,
       comment: json['comment'].cast<Comment>() as List<Comment>,
       imageUrl: json['imageUrl'].cast<String>() as List<String>,
       hashtag: json['hashtag'].cast<String>() as List<String>,

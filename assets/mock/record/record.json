@@ -2,12 +2,10 @@
     "data": [
         {
             "id": "1",
-            "user": [
-                {
-                    "name": "유니콘",
-                    "iconUrl": "assets/images/common/user/icon_0.png"
-                }
-            ],
+            "user": {
+                "name": "유니콘",
+                "iconUrl": "assets/images/common/user/icon_0.png"
+            },
             "content": "방역수칙이 4단계로 격상했다.... 코로나 언제 사라져 ㅠㅠ",
             "weather": "흐림",
             "date": "2021-07-24",
@@ -60,12 +58,10 @@
         },
         {
             "id": "1",
-            "user": [
-                {
-                    "name": "유니콘",
-                    "iconUrl": "assets/images/common/user/icon_0.png"
-                }
-            ],
+            "user": {
+                "name": "유니콘",
+                "iconUrl": "assets/images/common/user/icon_0.png"
+            },
             "content": "방역수칙이 4단계로 격상했다.... 코로나 언제 사라져 ㅠㅠ",
             "weather": "흐림",
             "date": "2021-07-24",
@@ -118,12 +114,10 @@
         },
         {
             "id": "1",
-            "user": [
-                {
-                    "name": "유니콘",
-                    "iconUrl": "assets/images/common/user/icon_0.png"
-                }
-            ],
+            "user": {
+                "name": "유니콘",
+                "iconUrl": "assets/images/common/user/icon_0.png"
+            },
             "content": "방역수칙이 4단계로 격상했다.... 코로나 언제 사라져 ㅠㅠ",
             "weather": "흐림",
             "date": "2021-07-24",
