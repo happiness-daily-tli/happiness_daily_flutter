@@ -1,5 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:happiness_daily_flutter/components/common/record_tile_slider.dart';
 import 'package:happiness_daily_flutter/models/record.dart';
 
 class RecordTile extends StatelessWidget {
@@ -13,7 +13,7 @@ class RecordTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -33,26 +33,12 @@ class RecordTile extends StatelessWidget {
               ),
             ],
           ),
-          CarouselSlider(
-            items: record.imageUrl
-                .map(
-                  (item) => Container(
-                    child: Image(
-                      height: 335,
-                      image: AssetImage(item),
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                )
-                .toList(),
-            options: CarouselOptions(
-              height: 335,
-              initialPage: 0,
-              enableInfiniteScroll: false,
-              aspectRatio: 2.0,
-              scrollDirection: Axis.horizontal,
-            ),
+          SizedBox(
+            height: 10,
           ),
+          RecordTileSlider(
+            imageUrl: record.imageUrl,
+          )
         ],
       ),
     );

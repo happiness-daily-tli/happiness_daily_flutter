@@ -12,7 +12,7 @@ class RecordListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       padding: EdgeInsets.zero,
       primary: false,
       shrinkWrap: true,
@@ -21,6 +21,9 @@ class RecordListView extends StatelessWidget {
       itemBuilder: (context, index) {
         final record = recordList[index];
         return RecordTile(record: record);
+      },
+      separatorBuilder: (context, index) {
+        return SizedBox(height: 40);
       },
     );
   }
