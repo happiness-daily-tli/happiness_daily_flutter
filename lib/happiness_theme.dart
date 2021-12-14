@@ -50,13 +50,13 @@ class HappinessTheme {
   static TextTheme darkTextTheme = TextTheme();
 
   static ColorScheme lightColorScheme = ColorScheme(
-    primary: Colors.red,
+    primary: secondaryColor,
     onPrimary: Colors.white,
     primaryVariant: Colors.orange,
     background: Colors.red,
     onBackground: Colors.black,
     secondary: Colors.red,
-    onSecondary: secondaryColor,
+    onSecondary: Colors.black,
     secondaryVariant: Colors.deepOrange,
     error: Colors.black,
     onError: Colors.white,

@@ -36,6 +36,7 @@ dependencies:
   vrouter: ^1.2.0
   hooks_riverpod: ^1.0.0-dev.7
   shared_preferences: 2.0.7
+  intl: 0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -57,6 +58,7 @@ flutter:
     - assets/
     - assets/images/
     - assets/images/common/user/
+    - assets/images/common/icon/
     - assets/images/common/weather/
     - assets/images/login/
     - assets/images/home/

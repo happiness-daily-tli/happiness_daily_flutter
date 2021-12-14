@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:happiness_daily_flutter/components/home/my_happiness/level.dart';
-import 'package:happiness_daily_flutter/components/home/my_happiness/record_list_header.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class Top extends ConsumerWidget {

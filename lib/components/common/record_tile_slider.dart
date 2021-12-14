@@ -55,7 +55,7 @@ class _RecordTileSliderState extends State<RecordTileSlider> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: (_current == entry.key
-                            ? Theme.of(context).colorScheme.onSecondary
+                            ? Theme.of(context).colorScheme.primary
                             : Colors.white)
                         .withOpacity(_current == entry.key ? 1 : 0.5),
                   ),

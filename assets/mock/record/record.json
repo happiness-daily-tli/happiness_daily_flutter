@@ -10,6 +10,7 @@
             "weather": "흐림",
             "date": "2021-07-24",
             "isLock": false,
+            "isHeart": false,
             "heartCount": 2,
             "comment": [
                 {
@@ -66,6 +67,7 @@
             "weather": "흐림",
             "date": "2021-07-24",
             "isLock": false,
+            "isHeart": false,
             "heartCount": 2,
             "comment": [
                 {
@@ -122,6 +124,7 @@
             "weather": "흐림",
             "date": "2021-07-24",
             "isLock": false,
+            "isHeart": false,
             "heartCount": 2,
             "comment": [
                 {

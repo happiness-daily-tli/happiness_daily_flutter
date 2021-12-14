@@ -27,7 +27,11 @@ class RecordListHeader extends ConsumerWidget {
                   '2021.07',
                   style: Theme.of(context).textTheme.caption,
                 ),
-                SvgPicture.asset('assets/images/home/more.svg'),
+                SizedBox(
+                  width: 1,
+                ),
+                Image.asset('assets/images/common/icon/down.png',
+                    width: 6, height: 8),
               ],
             ),
           ],

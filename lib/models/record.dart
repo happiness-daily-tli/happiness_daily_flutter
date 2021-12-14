@@ -7,6 +7,7 @@ class Record {
   String weather;
   String date;
   bool isLock;
+  bool isHeart;
   int heartCount;
   List<Comment> comment;
   List<String> imageUrl;
@@ -19,6 +20,7 @@ class Record {
     required this.weather,
     required this.date,
     required this.isLock,
+    required this.isHeart,
     required this.heartCount,
     required this.comment,
     required this.imageUrl,
@@ -33,6 +35,7 @@ class Record {
       weather: json['weather'] as String,
       date: json['date'] as String,
       isLock: json['isLock'] as bool,
+      isHeart: json['isHeart'] as bool,
       heartCount: json['heartCount'] as int,
       comment: json['comment'].cast<Comment>() as List<Comment>,
       imageUrl: json['imageUrl'].cast<String>() as List<String>,
