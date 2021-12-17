@@ -1,19 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:happiness_daily_flutter/state/app.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingPage extends ConsumerWidget {
-  final userNameController = TextEditingController();
+class SettingPage extends ConsumerStatefulWidget {
+  const SettingPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
+  _SettingPageState createState() => _SettingPageState();
+}
 
-    _setUserName() async {
+class _SettingPageState extends ConsumerState<SettingPage> {
+  final userNameController = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
+  String iconUrl = 'assets/images/common/user/icon_large_0.png';
+  bool isDuplication = true;
+  bool isUserName = false;
+
+  @override
+  void initState() {
+    super.initState();
+    userNameController.addListener(_setIsUserName);
+  }
+
+  @override
+  void dispose() {
+    userNameController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _pickImg() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        iconUrl = image.path;
+      });
+    }
+  }
+
+  void _turnOffDuplication() {
+    setState(() {
+      isDuplication = false;
+    });
+  }
+
+  void _setIsUserName() {
+    setState(() {
+      isUserName = userNameController.text != '';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final userName = ref.watch(userNameProvider);
+    final userIcon = ref.watch(userIconProvider);
+
+    _setUser() async {
+      if (isDuplication) {
+        _turnOffDuplication();
+        return;
+      }
+      userName.state = userNameController.text;
+      userIcon.state = iconUrl;
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('username', user.state);
+      prefs.setString('username', userNameController.text);
+      prefs.setString('usericon', iconUrl);
       context.vRouter.to('/');
     }
 
@@ -31,10 +84,9 @@ class SettingPage extends ConsumerWidget {
               width: 80,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                gradient: LinearGradient(
-                  begin: Alignment(-1, -1),
-                  end: Alignment(-1, 1),
-                  colors: [Color(0xFFC4DBF6), Color(0xFFFACAFC)],
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(iconUrl),
                 ),
               ),
               child: Align(
@@ -42,10 +94,21 @@ class SettingPage extends ConsumerWidget {
                 child: CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 12.0,
-                  child: Icon(
-                    Icons.edit,
-                    size: 15.0,
-                    color: Color(0xFF404040),
+                  child: ElevatedButton(
+                    onPressed: () => _pickImg(),
+                    child: Image.asset(
+                      'assets/images/common/icon/pencil.png',
+                      width: 14,
+                      height: 14,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(0),
+                      primary: Colors.white, // <-- Button color
+                      onPrimary: Theme.of(context)
+                          .colorScheme
+                          .primary, // <-- Splash color
+                    ),
                   ),
                 ),
               ),
@@ -63,27 +126,24 @@ class SettingPage extends ConsumerWidget {
                 ),
                 border: Border.all(
                   width: 1,
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 20),
+                    padding: const EdgeInsets.only(left: 20, right: 10),
                     child: Text(
                       '닉네임',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   Flexible(
                     child: TextField(
+                      controller: userNameController,
                       decoration: InputDecoration(
                         hintText: '닉네임을 입력해주세요',
                         hintStyle: TextStyle(
-                          fontSize: 14,
                           color: Color(0xff999999),
                         ),
                         border: InputBorder.none,
@@ -92,15 +152,16 @@ class SettingPage extends ConsumerWidget {
                         errorBorder: InputBorder.none,
                         disabledBorder: InputBorder.none,
                       ),
-                      onChanged: (text) {
-                        user.state = text;
-                      },
                     ),
                   ),
                 ],
               ),
             ),
             Visibility(
+              maintainSize: true,
+              maintainAnimation: true,
+              maintainState: true,
+              visible: !isDuplication,
               child: Container(
                 height: 50,
                 margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -110,46 +171,43 @@ class SettingPage extends ConsumerWidget {
                   children: [
                     Container(
                       padding: const EdgeInsets.only(bottom: 2),
-                      child: Icon(
-                        Icons.announcement_outlined,
-                        size: 18,
-                        color: Color(0xFF6B53FF),
-                      ),
+                      child: Image.asset('assets/images/common/icon/notice.png',
+                          width: 18, height: 18),
                     ),
                     SizedBox(
                       width: 4,
                     ),
                     Container(
-                      padding: const EdgeInsets.only(bottom: 8),
+                      padding: const EdgeInsets.only(bottom: 2),
                       child: Text(
                         '이미 존재하는 닉네임입니다.',
                         style: TextStyle(
-                          color: Color(0xFF6B53FF),
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              maintainSize: true,
-              maintainAnimation: true,
-              maintainState: true,
-              visible: user.state != '',
             ),
             InkWell(
-              onTap: () => _setUserName(),
+              onTap: () => _setUser(),
               child: Container(
                 height: 52,
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: BoxDecoration(
-                  color: Color(0xFF6B53FF),
+                  color: Color(
+                    userNameController.text == '' ? 0xFFF5F5F5 : 0xFF6B53FF,
+                  ),
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 child: Center(
                   child: Text(
-                    '행복일기 시작하기',
+                    '확인',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: userNameController.text == ''
+                          ? Color(0xFF999999)
+                          : Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

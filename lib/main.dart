@@ -24,18 +24,22 @@ Future main() async {
 }
 
 class MyApp extends ConsumerWidget {
-  _getUserName() async {
+  _getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? username = prefs.getString('username');
+    String? usericon = prefs.getString('usericon');
 
-    return username != null ? username : '';
+    return username != null ? [username, usericon] : ['', ''];
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = HappinessTheme.light();
+    final userName = ref.read(userNameProvider);
+    final userIcon = ref.read(userIconProvider);
+
     var isFirstEntry = true;
-    var testMode = false;
+    var testMode = true;
     var testUserName = true;
 
     return VRouter(
@@ -44,13 +48,14 @@ class MyApp extends ConsumerWidget {
         VGuard(
           beforeEnter: (vRedirector) async {
             if (testMode) {
-              if (isFirstEntry) {
-                vRedirector.to('/login');
-                isFirstEntry = false;
-              } else if (testUserName) {
-                vRedirector.to('/setting');
-                testUserName = false;
-              }
+              // if (isFirstEntry) {
+              //   vRedirector.to('/login');
+              //   isFirstEntry = false;
+              // } else if (testUserName) {
+              //   vRedirector.to('/setting');
+              //   testUserName = false;
+              // }
+              vRedirector.to('/setting');
             } else {
               if (isFirstEntry) {
                 final token = await AccessTokenStore.instance.fromStore();
@@ -58,9 +63,10 @@ class MyApp extends ConsumerWidget {
                   vRedirector.to('/login');
                   return;
                 }
-                final user = ref.read(userProvider);
-                user.state = await _getUserName();
-                if (user.state == '') {
+                final List<String> user = await _getUser();
+                userName.state = user[0];
+                userIcon.state = user[1];
+                if (userName.state == '') {
                   vRedirector.to('/setting');
                   return;
                 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-Color secondaryColor = Color(0xFF6B53FF);
+Color black = Color(0xFF1A1A1A);
+Color purple = Color(0xFF6B53FF);
 
 class HappinessTheme {
   static TextTheme lightTextTheme = TextTheme(
@@ -13,28 +14,25 @@ class HappinessTheme {
       fontSize: 14.0,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.bold,
-      color: secondaryColor,
+      color: purple,
     ),
     headline6: TextStyle(
       fontSize: 12.0,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.bold,
-      color: secondaryColor,
+      color: purple,
     ),
     subtitle1: TextStyle(
       fontSize: 14.0,
-      height: 1.4,
-      fontFamily: 'Cafe24Ohsquare',
-      color: secondaryColor,
-    ),
+    ), // hintText
     subtitle2: TextStyle(
       fontSize: 12.0,
       height: 1.4,
       fontFamily: 'Cafe24Ohsquare',
-      color: secondaryColor,
+      color: purple,
     ),
-    bodyText1: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
-    bodyText2: TextStyle(fontSize: 14.0),
+    bodyText1: TextStyle(fontSize: 14.0),
+    bodyText2: TextStyle(fontSize: 14.0), //Text()
     caption: TextStyle(
       fontSize: 14.0,
       fontFamily: 'Poppins',
@@ -50,18 +48,18 @@ class HappinessTheme {
   static TextTheme darkTextTheme = TextTheme();
 
   static ColorScheme lightColorScheme = ColorScheme(
-    primary: secondaryColor,
-    onPrimary: Colors.white,
-    primaryVariant: Colors.orange,
+    primary: purple,
+    onPrimary: Colors.red,
+    primaryVariant: Colors.red,
     background: Colors.red,
-    onBackground: Colors.black,
+    onBackground: Colors.red,
     secondary: Colors.red,
-    onSecondary: Colors.black,
-    secondaryVariant: Colors.deepOrange,
-    error: Colors.black,
-    onError: Colors.white,
-    surface: Colors.white,
-    onSurface: Colors.black,
+    onSecondary: Colors.red,
+    secondaryVariant: Colors.red,
+    error: Colors.red,
+    onError: Colors.red,
+    surface: Colors.red,
+    onSurface: Colors.red,
     brightness: Brightness.light,
   );
 
