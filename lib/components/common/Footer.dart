@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:happiness_daily_flutter/state/index.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:vrouter/vrouter.dart';
 
-class Footer extends ConsumerWidget {
+class Footer extends StatefulWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final tabIndex = ref.watch(tabIndexProvider);
+  State<Footer> createState() => _FooterState();
+}
+
+class _FooterState extends State<Footer> {
+  int _tabIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    void _setTabIndex(index) {
+      setState(() {
+        _tabIndex = index;
+      });
+    }
 
     return Container(
       decoration: BoxDecoration(
@@ -24,8 +34,16 @@ class Footer extends ConsumerWidget {
             selectedFontSize: 10,
             unselectedFontSize: 10, //현재 선택된 Index
             elevation: 0,
-            onTap: (int index) => tabIndex.state = index,
-            currentIndex: tabIndex.state,
+            currentIndex: _tabIndex,
+            onTap: (int value) {
+              _setTabIndex(value);
+              if (value == 0)
+                context.vRouter.to('/');
+              else if (value == 1)
+                context.vRouter.to('/write');
+              else
+                context.vRouter.to('/our');
+            },
             items: [
               BottomNavigationBarItem(
                 label: '나의행복',

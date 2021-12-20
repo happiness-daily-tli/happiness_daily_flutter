@@ -5,14 +5,14 @@ import 'package:image_picker/image_picker.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingPage extends ConsumerStatefulWidget {
-  const SettingPage({Key? key}) : super(key: key);
+class SettingUserPage extends ConsumerStatefulWidget {
+  const SettingUserPage({Key? key}) : super(key: key);
 
   @override
-  _SettingPageState createState() => _SettingPageState();
+  _SettingUserPageState createState() => _SettingUserPageState();
 }
 
-class _SettingPageState extends ConsumerState<SettingPage> {
+class _SettingUserPageState extends ConsumerState<SettingUserPage> {
   final userNameController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
   String iconUrl = 'assets/images/common/user/icon_large_0.png';

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/components/common/record_list_view.dart';
-import 'level.dart';
-import 'record_list_header.dart';
+import 'package:happiness_daily_flutter/components/my_happiness/index.dart';
 import 'package:happiness_daily_flutter/models/record.dart';
 import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'top.dart';
 
-class MyHappiness extends ConsumerWidget {
+class MyHappinessPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     AsyncValue<List<Record>> record = ref.watch(recordProvider);
