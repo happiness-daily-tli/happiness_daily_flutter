@@ -36,13 +36,15 @@ class _FooterState extends State<Footer> {
             elevation: 0,
             currentIndex: _tabIndex,
             onTap: (int value) {
-              _setTabIndex(value);
-              if (value == 0)
+              if (value == 0) {
                 context.vRouter.to('/');
-              else if (value == 1)
-                context.vRouter.to('/write');
-              else
+                _setTabIndex(0);
+              } else if (value == 2) {
                 context.vRouter.to('/our');
+                _setTabIndex(2);
+              } else {
+                context.vRouter.to(_tabIndex == 0 ? '/write' : '/our/write');
+              }
             },
             items: [
               BottomNavigationBarItem(

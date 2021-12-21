@@ -7,9 +7,11 @@ class WritePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('행복기록'),
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new),
-            onPressed: () => context.vRouter.to('/')),
+        leading: context.vRouter.historyCanBack()
+            ? IconButton(
+                icon: Icon(Icons.arrow_back_ios_new),
+                onPressed: context.vRouter.historyBack)
+            : null,
       ),
       body: Center(
         child: Text('Write Page'),
