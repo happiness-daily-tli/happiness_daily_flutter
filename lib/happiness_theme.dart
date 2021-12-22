@@ -7,7 +7,11 @@ Color grayDark = Color(0xFF999999);
 
 class HappinessTheme {
   static TextTheme lightTextTheme = TextTheme(
-    headline1: TextStyle(fontSize: 28.0, fontFamily: 'Cafe24Ohsquare'),
+    headline1: TextStyle(
+      fontSize: 28.0,
+      fontFamily: 'Cafe24Ohsquare',
+      color: black,
+    ),
     headline2: TextStyle(
       fontSize: 24.0,
       fontFamily: 'Cafe24Ohsquare',

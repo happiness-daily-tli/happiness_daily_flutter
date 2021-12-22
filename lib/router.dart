@@ -40,7 +40,7 @@ class RouterMyApp extends ConsumerWidget {
               //   vRedirector.to('/setting');
               //   testUserName = false;
               // }
-              vRedirector.to('/setting/user');
+              vRedirector.to('/setting/alert');
             } else {
               if (isFirstEntry) {
                 final token = await AccessTokenStore.instance.fromStore();
