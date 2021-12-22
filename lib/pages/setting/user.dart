@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_daily_flutter/components/common/bottom_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:happiness_daily_flutter/state/app.dart';
 import 'package:image_picker/image_picker.dart';
@@ -67,7 +68,8 @@ class _SettingUserPageState extends ConsumerState<SettingUserPage> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('username', userNameController.text);
       prefs.setString('usericon', iconUrl);
-      context.vRouter.to('/');
+      print('hi');
+      context.vRouter.to('/setting/alert');
     }
 
     return Scaffold(
@@ -104,10 +106,8 @@ class _SettingUserPageState extends ConsumerState<SettingUserPage> {
                     style: ElevatedButton.styleFrom(
                       shape: CircleBorder(),
                       padding: EdgeInsets.all(0),
-                      primary: Colors.white, // <-- Button color
-                      onPrimary: Theme.of(context)
-                          .colorScheme
-                          .primary, // <-- Splash color
+                      primary: Colors.white,
+                      onPrimary: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ),
@@ -190,29 +190,10 @@ class _SettingUserPageState extends ConsumerState<SettingUserPage> {
                 ),
               ),
             ),
-            InkWell(
-              onTap: () => _setUser(),
-              child: Container(
-                height: 52,
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: BoxDecoration(
-                  color: Color(
-                    userNameController.text == '' ? 0xFFF5F5F5 : 0xFF6B53FF,
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                child: Center(
-                  child: Text(
-                    '확인',
-                    style: TextStyle(
-                      color: userNameController.text == ''
-                          ? Color(0xFF999999)
-                          : Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
+            BottomButton(
+              onClick: _setUser,
+              disabled: userNameController.text == '',
+              labelText: '확인',
             ),
           ],
         ),

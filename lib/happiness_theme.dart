@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 
 Color black = Color(0xFF1A1A1A);
 Color purple = Color(0xFF6B53FF);
+Color gray = Color(0xFFF5F5F5);
+Color grayDark = Color(0xFF999999);
 
 class HappinessTheme {
   static TextTheme lightTextTheme = TextTheme(
     headline1: TextStyle(fontSize: 28.0, fontFamily: 'Cafe24Ohsquare'),
     headline2: TextStyle(
-        fontSize: 24.0, fontFamily: 'Cafe24Ohsquare', color: Colors.black),
+      fontSize: 24.0,
+      fontFamily: 'Cafe24Ohsquare',
+      color: Colors.black,
+    ),
     headline3: TextStyle(fontSize: 20.0, fontFamily: 'Cafe24Ohsquare'),
     headline4: TextStyle(fontSize: 16.0, fontFamily: 'Cafe24Ohsquare'),
     headline5: TextStyle(
@@ -36,10 +41,14 @@ class HappinessTheme {
     caption: TextStyle(
       fontSize: 14.0,
       fontFamily: 'Poppins',
-      color: Color(0xFF999999),
+      color: grayDark,
     ),
     button: TextStyle(
-      fontSize: 16.0,
+      fontSize: 14.0,
+      fontWeight: FontWeight.bold,
+    ),
+    overline: TextStyle(
+      fontSize: 14.0,
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
@@ -49,7 +58,7 @@ class HappinessTheme {
 
   static ColorScheme lightColorScheme = ColorScheme(
     primary: purple,
-    onPrimary: Colors.red,
+    onPrimary: Colors.white, // button text
     primaryVariant: Colors.red,
     background: Colors.red,
     onBackground: Colors.red,
@@ -58,8 +67,8 @@ class HappinessTheme {
     secondaryVariant: Colors.red,
     error: Colors.red,
     onError: Colors.red,
-    surface: Colors.red,
-    onSurface: Colors.red,
+    surface: Colors.white,
+    onSurface: gray, // disabled
     brightness: Brightness.light,
   );
 
@@ -69,6 +78,21 @@ class HappinessTheme {
       brightness: Brightness.light,
       textTheme: lightTextTheme,
       colorScheme: lightColorScheme,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+          foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
+            if (states.contains(MaterialState.disabled)) {
+              return grayDark;
+            }
+            return Colors.white;
+          }),
+        ),
+      ),
     );
   }
 

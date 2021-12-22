@@ -24,7 +24,7 @@ class RouterMyApp extends ConsumerWidget {
     final userIcon = ref.read(userIconProvider);
 
     var isFirstEntry = true;
-    var testMode = false;
+    var testMode = true;
     var testUserName = true;
 
     return VRouter(
