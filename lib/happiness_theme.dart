@@ -9,6 +9,7 @@ class HappinessTheme {
   static TextTheme lightTextTheme = TextTheme(
     headline1: TextStyle(
       fontSize: 28.0,
+      height: 1.3,
       fontFamily: 'Cafe24Ohsquare',
       color: black,
     ),
@@ -18,7 +19,11 @@ class HappinessTheme {
       color: Colors.black,
     ),
     headline3: TextStyle(fontSize: 20.0, fontFamily: 'Cafe24Ohsquare'),
-    headline4: TextStyle(fontSize: 16.0, fontFamily: 'Cafe24Ohsquare'),
+    headline4: TextStyle(
+      fontSize: 16.0,
+      color: black,
+      fontFamily: 'Cafe24Ohsquare',
+    ),
     headline5: TextStyle(
       fontSize: 14.0,
       fontFamily: 'Poppins',
