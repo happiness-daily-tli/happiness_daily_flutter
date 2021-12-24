@@ -23,7 +23,7 @@ class TimePickerSpinnerWidget extends StatelessWidget {
               border: Border.symmetric(
                 horizontal: BorderSide(
                   width: 0.5,
-                  color: grayDark,
+                  color: darkGray,
                 ),
               ),
             ),

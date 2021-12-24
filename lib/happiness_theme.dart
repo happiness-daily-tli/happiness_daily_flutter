@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 Color black = Color(0xFF1A1A1A);
 Color purple = Color(0xFF6B53FF);
 Color gray = Color(0xFFF5F5F5);
-Color grayDark = Color(0xFF999999);
+Color darkGray = Color(0xFF999999);
 
 class HappinessTheme {
   static TextTheme lightTextTheme = TextTheme(
@@ -16,13 +16,13 @@ class HappinessTheme {
     headline2: TextStyle(
       fontSize: 24.0,
       fontFamily: 'Cafe24Ohsquare',
-      color: Colors.black,
+      color: black,
     ),
     headline3: TextStyle(fontSize: 20.0, fontFamily: 'Cafe24Ohsquare'),
     headline4: TextStyle(
       fontSize: 16.0,
-      color: black,
       fontFamily: 'Cafe24Ohsquare',
+      color: black,
     ),
     headline5: TextStyle(
       fontSize: 14.0,
@@ -45,12 +45,12 @@ class HappinessTheme {
       fontFamily: 'Cafe24Ohsquare',
       color: purple,
     ),
-    bodyText1: TextStyle(fontSize: 14.0),
+    bodyText1: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
     bodyText2: TextStyle(fontSize: 14.0), //Text()
     caption: TextStyle(
       fontSize: 14.0,
       fontFamily: 'Poppins',
-      color: grayDark,
+      color: darkGray,
     ),
     button: TextStyle(
       fontSize: 14.0,
@@ -96,7 +96,7 @@ class HappinessTheme {
           ),
           foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
             if (states.contains(MaterialState.disabled)) {
-              return grayDark;
+              return darkGray;
             }
             return Colors.white;
           }),

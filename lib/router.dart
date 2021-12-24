@@ -33,14 +33,14 @@ class RouterMyApp extends ConsumerWidget {
         VGuard(
           beforeEnter: (vRedirector) async {
             if (testMode) {
-              // if (isFirstEntry) {
-              //   vRedirector.to('/login');
-              //   isFirstEntry = false;
-              // } else if (testUserName) {
-              //   vRedirector.to('/setting');
-              //   testUserName = false;
-              // }
-              vRedirector.to('/setting/alert');
+              if (isFirstEntry) {
+                vRedirector.to('/login');
+                isFirstEntry = false;
+              } else if (testUserName) {
+                vRedirector.to('/setting/user');
+                testUserName = false;
+              }
+              // vRedirector.to('/setting/alert');
             } else {
               if (isFirstEntry) {
                 final token = await AccessTokenStore.instance.fromStore();
@@ -68,7 +68,7 @@ class RouterMyApp extends ConsumerWidget {
               ),
               buildTransition: (animation, _, child) => SlideTransition(
                 position: animation.drive(
-                  Tween(begin: Offset(-1.0, 0.0), end: Offset.zero).chain(
+                  Tween(begin: Offset(1.0, 0.0), end: Offset.zero).chain(
                     CurveTween(curve: Curves.ease),
                   ),
                 ),

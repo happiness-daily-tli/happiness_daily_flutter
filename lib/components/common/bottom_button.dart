@@ -17,16 +17,17 @@ class BottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Container(
         height: 56,
-        width: MediaQuery.of(context).size.width * 0.9,
+        width: double.infinity,
         child: ElevatedButton(
           style: disabledThemeOnly
               ? ElevatedButton.styleFrom(
                   elevation: 0,
                   primary: gray,
-                  onPrimary: grayDark,
+                  onPrimary: darkGray,
                 )
               : null,
           onPressed: disabled ? null : () => this.onClick(),
