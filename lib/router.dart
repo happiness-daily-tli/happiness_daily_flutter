@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_daily_flutter/components/common/drawer_widget.dart';
 import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'components/common/footer.dart';
+import 'components/common/bottom_navigation_bar_widget.dart';
 import 'happiness_theme.dart';
 import 'pages/index.dart';
 
 class RouterMyApp extends ConsumerWidget {
+  final GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
+
+  _handleDrawer() {
+    print(_key.currentState);
+    _key.currentState?.openDrawer();
+  }
+
   _getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String username = prefs.getString('username') as String;
@@ -24,7 +32,7 @@ class RouterMyApp extends ConsumerWidget {
     final userIcon = ref.read(userIconProvider);
 
     var isFirstEntry = true;
-    var testMode = true;
+    var testMode = false;
     var testUserName = true;
 
     return VRouter(
@@ -63,8 +71,10 @@ class RouterMyApp extends ConsumerWidget {
             VNester(
               path: '/',
               widgetBuilder: (child) => Scaffold(
+                key: _key,
                 body: child,
-                bottomNavigationBar: Footer(),
+                drawer: DrawerWidget(),
+                bottomNavigationBar: BottomNavigaionBarWidget(),
               ),
               buildTransition: (animation, _, child) => SlideTransition(
                 position: animation.drive(
@@ -77,7 +87,7 @@ class RouterMyApp extends ConsumerWidget {
               nestedRoutes: [
                 VWidget(
                   path: null,
-                  widget: MyHappinessPage(),
+                  widget: MyHappinessPage(handleDrawer: _handleDrawer),
                   buildTransition: (animation, _, child) =>
                       FadeTransition(opacity: animation, child: child),
                   stackedRoutes: [

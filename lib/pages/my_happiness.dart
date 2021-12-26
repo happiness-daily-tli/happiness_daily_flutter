@@ -6,6 +6,13 @@ import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class MyHappinessPage extends ConsumerWidget {
+  final Function handleDrawer;
+
+  const MyHappinessPage({
+    Key? key,
+    required this.handleDrawer,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     AsyncValue<List<Record>> record = ref.watch(recordProvider);
@@ -15,20 +22,34 @@ class MyHappinessPage extends ConsumerWidget {
       primary: true,
       children: [
         Stack(
+          alignment: Alignment.center,
           children: [
             Container(
-              height: 620,
+              height: 640,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/images/home/background.png"),
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.fitHeight,
                 ),
               ),
             ),
             Positioned(
-              top: 171,
+              top: 60,
+              left: 10,
+              child: IconButton(
+                icon: Image.asset('assets/images/common/icon/hamburger.png'),
+                iconSize: 32,
+                onPressed: () => handleDrawer(),
+              ),
+            ),
+            Positioned(
+              top: 90,
+              child: Music(),
+            ),
+            Positioned(
+              top: 190,
               right: 20,
-              child: Top(),
+              child: SpeechBubble(),
             ),
             Positioned(
               top: 438,

@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vrouter/vrouter.dart';
 
-class Footer extends StatefulWidget {
+class BottomNavigaionBarWidget extends StatefulWidget {
   @override
-  State<Footer> createState() => _FooterState();
+  State<BottomNavigaionBarWidget> createState() =>
+      _BottomNavigaionBarWidgetState();
 }
 
-class _FooterState extends State<Footer> {
+class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
   int _tabIndex = 0;
 
   @override

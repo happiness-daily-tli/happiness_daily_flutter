@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Top extends StatelessWidget {
+class SpeechBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
