@@ -44,7 +44,7 @@ class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
                 context.vRouter.to('/our');
                 _setTabIndex(2);
               } else {
-                context.vRouter.to(_tabIndex == 0 ? '/write' : '/our/write');
+                context.vRouter.to('/write');
               }
             },
             items: [

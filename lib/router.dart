@@ -90,21 +90,6 @@ class RouterMyApp extends ConsumerWidget {
                   widget: MyHappinessPage(handleDrawer: _handleDrawer),
                   buildTransition: (animation, _, child) =>
                       FadeTransition(opacity: animation, child: child),
-                  stackedRoutes: [
-                    VWidget(
-                      path: 'write',
-                      widget: WritePage(),
-                      buildTransition: (animation, _, child) => SlideTransition(
-                        position: animation.drive(
-                          Tween(begin: Offset(0.0, 1.0), end: Offset.zero)
-                              .chain(
-                            CurveTween(curve: Curves.ease),
-                          ),
-                        ),
-                        child: child,
-                      ),
-                    ),
-                  ],
                 ),
                 VWidget(
                   path: 'our',
@@ -113,23 +98,20 @@ class RouterMyApp extends ConsumerWidget {
                     opacity: animation,
                     child: child,
                   ),
-                  stackedRoutes: [
-                    VWidget(
-                      path: 'write',
-                      widget: WritePage(),
-                      buildTransition: (animation, _, child) => SlideTransition(
-                        position: animation.drive(
-                          Tween(begin: Offset(0.0, 1.0), end: Offset.zero)
-                              .chain(
-                            CurveTween(curve: Curves.ease),
-                          ),
-                        ),
-                        child: child,
-                      ),
-                    ),
-                  ],
                 ),
               ],
+            ),
+            VWidget(
+              path: '/write',
+              widget: WritePage(),
+              buildTransition: (animation, _, child) => SlideTransition(
+                position: animation.drive(
+                  Tween(begin: Offset(0.0, 1.0), end: Offset.zero).chain(
+                    CurveTween(curve: Curves.ease),
+                  ),
+                ),
+                child: child,
+              ),
             ),
           ],
         ),
