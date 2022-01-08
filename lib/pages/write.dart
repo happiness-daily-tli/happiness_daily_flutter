@@ -21,6 +21,15 @@ class WritePage extends StatelessWidget {
                 ),
                 onPressed: context.vRouter.historyBack)
             : null,
+        actions: [
+          TextButton(
+            onPressed: () => {},
+            child: Text(
+              '등록',
+              style: TextStyle(color: black),
+            ),
+          )
+        ],
       ),
       extendBodyBehindAppBar: true,
       body: Center(
@@ -29,6 +38,39 @@ class WritePage extends StatelessWidget {
             image: DecorationImage(
               image: AssetImage("assets/images/home/background.png"),
               fit: BoxFit.fitHeight,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 100, 20, 50),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text('2021.07.09 (금)'),
+                      ],
+                    ),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                            hintText: '당신만이 누리고 있는 행복을 붙잡아 기록해보세요.'),
+                        maxLength: 400,
+                        minLines: null,
+                        maxLines: null,
+                        expands: true,
+                      ),
+                    ),
+                    Text('#태그입력')
+                  ],
+                ),
+              ),
             ),
           ),
         ),
