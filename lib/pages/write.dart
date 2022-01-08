@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/happiness_theme.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:vrouter/vrouter.dart';
 
-class WritePage extends StatelessWidget {
+class WritePage extends StatefulWidget {
+  @override
+  State<WritePage> createState() => _WritePageState();
+}
+
+class _WritePageState extends State<WritePage> {
+  DateTime nowDate = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+
+    initializeDateFormatting();
+  }
+
   @override
   Widget build(BuildContext context) {
+    String formattedDate = DateFormat('yyyy.MM.dd', 'ko').format(nowDate);
+    String formattedWeek = DateFormat('(E)', 'ko').format(nowDate);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -53,8 +72,39 @@ class WritePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('2021.07.09 (금)'),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              formattedDate,
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                fontFamily: 'Poppins',
+                                color: black,
+                              ),
+                            ),
+                            SizedBox(width: 4.0),
+                            Text(
+                              formattedWeek,
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                color: black,
+                                wordSpacing: -0.05,
+                                height: 1.3,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text('비'),
+                            Text('흐림'),
+                            Text('맑음'),
+                            Text('행복'),
+                          ],
+                        ),
                       ],
                     ),
                     Expanded(
