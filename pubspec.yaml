@@ -31,13 +31,14 @@ dependencies:
   kakao_flutter_sdk: ^0.7.1
   flutter_dotenv: ^5.0.0
   flutter_native_splash: ^1.2.1
-  flutter_svg: 0.22.0
+  flutter_svg: ^0.22.0
   carousel_slider: ^4.0.0
   vrouter: ^1.2.0
   hooks_riverpod: ^1.0.0-dev.7
-  shared_preferences: 2.0.7
-  intl: 0.17.0
-  image_picker: 0.8.4+4
+  shared_preferences: ^2.0.7
+  intl: ^0.17.0
+  image_picker: ^0.8.4+4
+  lottie: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +66,7 @@ flutter:
     - assets/images/home/
     - assets/images/footer/
     - assets/mock/record/
+    - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
