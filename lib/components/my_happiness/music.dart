@@ -18,9 +18,12 @@ class _MusicState extends State<Music> {
     Timer(Duration(seconds: 3), () {
       setState(() {
         isShow = !isShow;
-        print(isShow);
       });
     });
+  }
+
+  void dispose() {
+    super.dispose();
   }
 
   @override
