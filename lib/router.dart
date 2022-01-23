@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:happiness_daily_flutter/components/common/drawer_widget.dart';
 import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:kakao_flutter_sdk/all.dart';
@@ -75,6 +76,15 @@ class RouterMyApp extends ConsumerWidget {
                 body: child,
                 drawer: DrawerWidget(),
                 bottomNavigationBar: BottomNavigaionBarWidget(),
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.centerDocked,
+                floatingActionButton: Padding(
+                  padding: const EdgeInsets.all(0),
+                  child: FloatingActionButton(
+                    child: SvgPicture.asset('assets/images/footer/tab_1.svg'),
+                    onPressed: () => context.vRouter.to('/write'),
+                  ),
+                ),
               ),
               buildTransition: (animation, _, child) => SlideTransition(
                 position: animation.drive(

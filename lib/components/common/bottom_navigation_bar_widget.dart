@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:happiness_daily_flutter/happiness_theme.dart';
 import 'package:vrouter/vrouter.dart';
 
 class BottomNavigaionBarWidget extends StatefulWidget {
@@ -19,23 +20,30 @@ class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
       });
     }
 
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-      ),
-      height: 90,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.white,
-            selectedItemColor: Colors.black,
+    return BottomAppBar(
+      shape: CircularNotchedRectangle(),
+      notchMargin: 8.0,
+      clipBehavior: Clip.antiAlias,
+      child: Container(
+        height: kBottomNavigationBarHeight + 10,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              top: BorderSide(
+                color: Colors.grey,
+                width: 0.5,
+              ),
+            ),
+          ),
+          child: BottomNavigationBar(
+            currentIndex: _tabIndex,
+            backgroundColor: Colors.red,
+            selectedItemColor: purple,
             unselectedItemColor: Colors.black.withOpacity(.60),
             selectedFontSize: 10,
-            unselectedFontSize: 10, //현재 선택된 Index
+            unselectedFontSize: 10,
             elevation: 0,
-            currentIndex: _tabIndex,
             onTap: (int value) {
               if (value == 0) {
                 context.vRouter.to('/');
@@ -55,7 +63,7 @@ class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
                     SvgPicture.asset('assets/images/footer/tab_0_active.svg'),
               ),
               BottomNavigationBarItem(
-                label: '행복찾기',
+                label: '',
                 icon: SvgPicture.asset('assets/images/footer/tab_1.svg'),
                 activeIcon:
                     SvgPicture.asset('assets/images/footer/tab_1_active.svg'),
@@ -68,11 +76,7 @@ class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
               ),
             ],
           ),
-          // Container(
-          //   height: 20,
-          //   color: Colors.white,
-          // )
-        ],
+        ),
       ),
     );
   }
