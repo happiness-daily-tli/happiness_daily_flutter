@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:happiness_daily_flutter/components/common/record_tile_slider.dart';
 import 'package:happiness_daily_flutter/models/record.dart';
-import 'package:happiness_daily_flutter/models/weather.dart';
 import 'package:intl/intl.dart';
+import 'content.dart';
+import 'header.dart';
+import 'slider.dart';
+import 'hashtag.dart';
+import 'weather.dart';
 
 class RecordTile extends StatefulWidget {
   final Record record;
@@ -22,8 +25,6 @@ class _RecordTileState extends State<RecordTile> {
   @override
   Widget build(BuildContext context) {
     final dataFormat = new DateFormat('yyyy.MM.dd');
-    final Weather weather = weatherList[
-        weatherList.indexWhere((e) => e.name == widget.record.weather)];
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -31,28 +32,11 @@ class _RecordTileState extends State<RecordTile> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Image.asset(
-                widget.record.user['iconUrl'],
-                width: 32,
-                height: 32,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                widget.record.user['name'],
-                style: TextStyle(color: Colors.black),
-              ),
-            ],
-          ),
+          RecordTileHeader(user: widget.record.user),
           SizedBox(
             height: 10,
           ),
-          RecordTileSlider(
-            imageUrl: widget.record.imageUrl,
-          ),
+          RecordTileSlider(imageUrl: widget.record.imageUrl),
           SizedBox(
             height: 10,
           ),
@@ -165,48 +149,15 @@ class _RecordTileState extends State<RecordTile> {
           SizedBox(
             height: 10,
           ),
-          Row(
-            children: [
-              Image.asset(
-                weather.imageUrl,
-                height: 20,
-                width: 20,
-              ),
-              SizedBox(
-                width: 4,
-              ),
-              Text(
-                weather.name,
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
+          RecordTileWeather(weather: widget.record.weather),
           SizedBox(
             height: 10,
           ),
-          Text(widget.record.content),
+          RecordTileContent(content: widget.record.content),
           SizedBox(
             height: 10,
           ),
-          Container(
-            height: 20,
-            child: ListView.separated(
-              padding: EdgeInsets.zero,
-              scrollDirection: Axis.horizontal,
-              itemCount: widget.record.hashtag.length,
-              itemBuilder: (context, index) {
-                return Text(
-                  '#${widget.record.hashtag[index]}',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return SizedBox(width: 4);
-              },
-            ),
-          ),
+          RecordTileHashtag(hashtag: widget.record.hashtag),
           SizedBox(
             height: 10,
           ),

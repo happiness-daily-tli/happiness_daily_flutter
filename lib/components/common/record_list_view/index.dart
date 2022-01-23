@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'record_tile.dart';
 import 'package:happiness_daily_flutter/models/record.dart';
+import 'record_tile/index.dart';
 
 class RecordListView extends StatelessWidget {
   final List<Record> recordList;
