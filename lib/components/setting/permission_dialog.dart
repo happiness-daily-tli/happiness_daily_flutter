@@ -4,10 +4,6 @@ import 'package:happiness_daily_flutter/happiness_theme.dart';
 import 'package:vrouter/vrouter.dart';
 
 class PermissionDialog extends StatelessWidget {
-  const PermissionDialog({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     _goToMyHappiness() {
