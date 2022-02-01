@@ -73,18 +73,27 @@ class RouterMyApp extends ConsumerWidget {
               path: '/',
               widgetBuilder: (child) => Scaffold(
                 key: _key,
+                extendBody: true,
                 body: child,
                 drawer: DrawerWidget(),
-                bottomNavigationBar: BottomNavigaionBarWidget(),
                 floatingActionButtonLocation:
-                    FloatingActionButtonLocation.centerDocked,
+                    FloatingActionButtonLocation.miniCenterDocked,
                 floatingActionButton: Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: FloatingActionButton(
-                    child: SvgPicture.asset('assets/images/footer/tab_1.svg'),
-                    onPressed: () => context.vRouter.to('/write'),
+                  padding: const EdgeInsets.only(top: 30),
+                  child: Container(
+                    height: 60,
+                    width: 60,
+                    child: FloatingActionButton(
+                      backgroundColor: purple,
+                      child: SvgPicture.asset(
+                          'assets/images/footer/tab_center.svg'),
+                      onPressed: () => {
+                        // TODO context.vRouter.to('/write'),
+                      },
+                    ),
                   ),
                 ),
+                bottomNavigationBar: BottomNavigaionBarWidget(),
               ),
               buildTransition: (animation, _, child) => SlideTransition(
                 position: animation.drive(

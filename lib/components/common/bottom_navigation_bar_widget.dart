@@ -20,22 +20,19 @@ class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
       });
     }
 
-    return BottomAppBar(
-      shape: CircularNotchedRectangle(),
-      notchMargin: 8.0,
-      clipBehavior: Clip.antiAlias,
-      child: Container(
-        height: kBottomNavigationBarHeight + 10,
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topRight: Radius.circular(10),
+        topLeft: Radius.circular(10),
+      ),
+      child: BottomAppBar(
+        color: Colors.blue,
+        elevation: 20,
+        shape: CircularNotchedRectangle(),
+        clipBehavior: Clip.antiAlias,
+        notchMargin: 0,
         child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border(
-              top: BorderSide(
-                color: Colors.grey,
-                width: 0.5,
-              ),
-            ),
-          ),
+          height: kBottomNavigationBarHeight + 10,
           child: BottomNavigationBar(
             currentIndex: _tabIndex,
             backgroundColor: Colors.red,
@@ -46,13 +43,11 @@ class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
             elevation: 0,
             onTap: (int value) {
               if (value == 0) {
-                context.vRouter.to('/');
                 _setTabIndex(0);
-              } else if (value == 2) {
+                context.vRouter.to('/');
+              } else if (value == 1) {
+                _setTabIndex(1);
                 context.vRouter.to('/our');
-                _setTabIndex(2);
-              } else {
-                context.vRouter.to('/write');
               }
             },
             items: [
@@ -61,12 +56,6 @@ class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
                 icon: SvgPicture.asset('assets/images/footer/tab_0.svg'),
                 activeIcon:
                     SvgPicture.asset('assets/images/footer/tab_0_active.svg'),
-              ),
-              BottomNavigationBarItem(
-                label: '',
-                icon: SvgPicture.asset('assets/images/footer/tab_1.svg'),
-                activeIcon:
-                    SvgPicture.asset('assets/images/footer/tab_1_active.svg'),
               ),
               BottomNavigationBarItem(
                 label: '우리의행복',
