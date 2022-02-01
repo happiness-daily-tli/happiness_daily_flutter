@@ -20,50 +20,88 @@ class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
       });
     }
 
-    return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topRight: Radius.circular(10),
-        topLeft: Radius.circular(10),
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 18,
+          ),
+        ],
       ),
-      child: BottomAppBar(
-        color: Colors.blue,
-        elevation: 20,
-        shape: CircularNotchedRectangle(),
-        clipBehavior: Clip.antiAlias,
-        notchMargin: 0,
-        child: Container(
-          height: kBottomNavigationBarHeight + 10,
-          child: BottomNavigationBar(
-            currentIndex: _tabIndex,
-            backgroundColor: Colors.red,
-            selectedItemColor: purple,
-            unselectedItemColor: Colors.black.withOpacity(.60),
-            selectedFontSize: 10,
-            unselectedFontSize: 10,
-            elevation: 0,
-            onTap: (int value) {
-              if (value == 0) {
-                _setTabIndex(0);
-                context.vRouter.to('/');
-              } else if (value == 1) {
-                _setTabIndex(1);
-                context.vRouter.to('/our');
-              }
-            },
-            items: [
-              BottomNavigationBarItem(
-                label: '나의행복',
-                icon: SvgPicture.asset('assets/images/footer/tab_0.svg'),
-                activeIcon:
-                    SvgPicture.asset('assets/images/footer/tab_0_active.svg'),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(10),
+          topLeft: Radius.circular(10),
+        ),
+        child: BottomAppBar(
+          color: Colors.white,
+          elevation: 20,
+          shape: CircularNotchedRectangle(),
+          clipBehavior: Clip.antiAlias,
+          notchMargin: 0,
+          child: Container(
+            height: kBottomNavigationBarHeight + 10,
+            child: BottomNavigationBar(
+              backgroundColor: Colors.transparent,
+              currentIndex: _tabIndex,
+              selectedLabelStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
               ),
-              BottomNavigationBarItem(
-                label: '우리의행복',
-                icon: SvgPicture.asset('assets/images/footer/tab_2.svg'),
-                activeIcon:
-                    SvgPicture.asset('assets/images/footer/tab_2_active.svg'),
+              unselectedItemColor: disabled,
+              unselectedLabelStyle: TextStyle(
+                fontSize: 12,
               ),
-            ],
+              elevation: 0,
+              onTap: (int value) {
+                if (value == 0) {
+                  _setTabIndex(0);
+                  context.vRouter.to('/');
+                } else if (value == 1) {
+                  _setTabIndex(1);
+                  context.vRouter.to('/our');
+                }
+              },
+              items: [
+                BottomNavigationBarItem(
+                  label: '나의행복',
+                  icon: SvgPicture.asset('assets/images/footer/tab_0.svg'),
+                  activeIcon: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 20,
+                          offset: Offset(4, 4),
+                        ),
+                      ],
+                    ),
+                    child: SvgPicture.asset(
+                        'assets/images/footer/tab_0_active.svg'),
+                  ),
+                ),
+                BottomNavigationBarItem(
+                  label: '우리의행복',
+                  icon: SvgPicture.asset('assets/images/footer/tab_1.svg'),
+                  activeIcon: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 20,
+                          offset: Offset(4, 4),
+                        ),
+                      ],
+                    ),
+                    child: SvgPicture.asset(
+                        'assets/images/footer/tab_1_active.svg'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

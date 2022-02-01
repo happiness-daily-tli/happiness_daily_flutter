@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 Color black = Color(0xFF1A1A1A);
 Color purple = Color(0xFF6B53FF);
+Color disabled = Color(0xFFC5C5C5);
 Color gray = Color(0xFFF5F5F5);
 Color darkGray = Color(0xFF999999);
 
