@@ -16,9 +16,11 @@ class _MusicState extends State<Music> {
     super.initState();
 
     Timer(Duration(seconds: 3), () {
-      setState(() {
-        isShow = !isShow;
-      });
+      if (this.mounted) {
+        setState(() {
+          isShow = !isShow;
+        });
+      }
     });
   }
 

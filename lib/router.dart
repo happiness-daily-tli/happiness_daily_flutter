@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:happiness_daily_flutter/components/common/drawer_widget.dart';
-import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:kakao_flutter_sdk/all.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'components/common/bottom_navigation_bar_widget.dart';
-import 'happiness_theme.dart';
-import 'pages/index.dart';
+import 'package:happiness_daily_flutter/components/home_scaffold/index.dart';
+import 'package:happiness_daily_flutter/state/index.dart';
+import 'package:happiness_daily_flutter/happiness_theme.dart';
+import 'package:happiness_daily_flutter/pages/index.dart';
 
 class RouterMyApp extends ConsumerWidget {
-  final GlobalKey<ScaffoldState> _key = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldkKey = new GlobalKey<ScaffoldState>();
 
   _handleDrawer() {
-    print(_key.currentState);
-    _key.currentState?.openDrawer();
+    scaffoldkKey.currentState?.openDrawer();
   }
 
   _getUser() async {
@@ -71,29 +68,9 @@ class RouterMyApp extends ConsumerWidget {
           stackedRoutes: [
             VNester(
               path: '/',
-              widgetBuilder: (child) => Scaffold(
-                key: _key,
-                extendBody: true,
-                body: child,
-                drawer: DrawerWidget(),
-                floatingActionButtonLocation:
-                    FloatingActionButtonLocation.miniCenterDocked,
-                floatingActionButton: Padding(
-                  padding: const EdgeInsets.only(top: 30),
-                  child: Container(
-                    height: 60,
-                    width: 60,
-                    child: FloatingActionButton(
-                      backgroundColor: purple,
-                      child: SvgPicture.asset(
-                          'assets/images/footer/tab_center.svg'),
-                      onPressed: () => {
-                        // TODO context.vRouter.to('/write'),
-                      },
-                    ),
-                  ),
-                ),
-                bottomNavigationBar: BottomNavigaionBarWidget(),
+              widgetBuilder: (child) => HomeScaffold(
+                scaffoldkKey: scaffoldkKey,
+                child: child,
               ),
               buildTransition: (animation, _, child) => SlideTransition(
                 position: animation.drive(
