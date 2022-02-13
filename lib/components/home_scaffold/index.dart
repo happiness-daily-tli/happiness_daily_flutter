@@ -19,7 +19,6 @@ class HomeScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldkKey,
-      extendBody: true,
       body: child,
       drawer: DrawerWidget(),
       floatingActionButtonLocation:

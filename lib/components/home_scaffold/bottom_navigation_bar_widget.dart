@@ -73,8 +73,7 @@ class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
-                          blurRadius: 20,
-                          offset: Offset(4, 4),
+                          blurRadius: 25,
                         ),
                       ],
                     ),
@@ -91,8 +90,7 @@ class _BottomNavigaionBarWidgetState extends State<BottomNavigaionBarWidget> {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
-                          blurRadius: 20,
-                          offset: Offset(4, 4),
+                          blurRadius: 25,
                         ),
                       ],
                     ),

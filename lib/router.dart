@@ -89,7 +89,7 @@ class RouterMyApp extends ConsumerWidget {
                 ),
                 VWidget(
                   path: 'our',
-                  widget: OurHappinessPage(),
+                  widget: OurHappinessPage(handleDrawer: _handleDrawer),
                   buildTransition: (animation, _, child) => FadeTransition(
                     opacity: animation,
                     child: child,
