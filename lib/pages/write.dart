@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_daily_flutter/components/common/appbar.dart';
 import 'package:happiness_daily_flutter/happiness_theme.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
@@ -25,30 +26,23 @@ class _WritePageState extends State<WritePage> {
     String formattedWeek = DateFormat('(E)', 'ko').format(nowDate);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '행복기록',
-          style: Theme.of(context).textTheme.headline4,
+      appBar: Appbar(
+        appBar: AppBar(),
+        text: "행복기록",
+        leadingIconButton: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios_new,
+            color: black,
+          ),
+          onPressed: context.vRouter.historyBack,
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: context.vRouter.historyCanBack()
-            ? IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: black,
-                ),
-                onPressed: context.vRouter.historyBack)
-            : null,
-        actions: [
-          TextButton(
-            onPressed: () => {},
-            child: Text(
-              '등록',
-              style: TextStyle(color: black),
-            ),
-          )
-        ],
+        actionTextButton: TextButton(
+          onPressed: () => {},
+          child: Text(
+            '등록',
+            style: TextStyle(color: black),
+          ),
+        ),
       ),
       extendBodyBehindAppBar: true,
       body: Center(
