@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:happiness_daily_flutter/components/common/bottom_button.dart';
+import 'package:happiness_daily_flutter/components/common/bottom_button_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:happiness_daily_flutter/state/app.dart';
 import 'package:image_picker/image_picker.dart';
@@ -190,7 +190,7 @@ class _SettingUserPageState extends ConsumerState<SettingUserPage> {
                 ),
               ),
             ),
-            BottomButton(
+            BottomButtonWidget(
               onClick: _setUser,
               disabled: userNameController.text == '',
               labelText: '확인',

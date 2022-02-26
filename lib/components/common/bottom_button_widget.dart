@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/happiness_theme.dart';
 
-class BottomButton extends StatelessWidget {
+class BottomButtonWidget extends StatelessWidget {
   final Function onClick;
   final String labelText;
   final bool disabled;
   final bool disabledThemeOnly;
 
-  const BottomButton({
+  const BottomButtonWidget({
     Key? key,
     required this.onClick,
     required this.labelText,

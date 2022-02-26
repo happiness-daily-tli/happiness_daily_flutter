@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:happiness_daily_flutter/components/common/bottom_button.dart';
+import 'package:happiness_daily_flutter/components/common/bottom_button_widget.dart';
 import 'package:happiness_daily_flutter/happiness_theme.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -122,7 +122,7 @@ class PermissionDialog extends StatelessWidget {
         ),
       ),
       actions: <Widget>[
-        BottomButton(
+        BottomButtonWidget(
           onClick: _goToMyHappiness,
           labelText: '확인',
         ),

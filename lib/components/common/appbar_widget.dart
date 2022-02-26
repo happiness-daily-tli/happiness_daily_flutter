@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:vrouter/vrouter.dart';
 
-class Appbar extends StatelessWidget implements PreferredSizeWidget {
+class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   final AppBar appBar;
   final String text;
-  final IconButton? leadingIconButton;
-  final TextButton actionTextButton;
+  final Widget? leadingIconButton;
+  final Widget? actionTextButton;
 
-  const Appbar({
+  const AppbarWidget({
     Key? key,
     required this.appBar,
     this.text = '',
     this.leadingIconButton,
-    required this.actionTextButton,
+    this.actionTextButton,
   }) : super(key: key);
 
   @override
@@ -20,6 +20,14 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> getList() {
+      List<Widget> childs = [];
+      if (actionTextButton != null) {
+        childs.add(actionTextButton!);
+      }
+      return childs;
+    }
+
     return AppBar(
       title: Text(
         text,
@@ -28,9 +36,7 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       leading: context.vRouter.historyCanBack() ? leadingIconButton : null,
-      actions: [
-        actionTextButton,
-      ],
+      actions: getList(),
     );
   }
 }
