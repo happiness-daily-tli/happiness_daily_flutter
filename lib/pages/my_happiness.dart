@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/components/common/appbar_widget.dart';
-import 'package:happiness_daily_flutter/components/common/record_list_view/index.dart';
+import 'package:happiness_daily_flutter/components/common/record_list_view/record_list_view.dart';
 import 'package:happiness_daily_flutter/components/my_happiness/index.dart';
 import 'package:happiness_daily_flutter/models/record.dart';
 import 'package:happiness_daily_flutter/state/index.dart';
@@ -77,7 +77,10 @@ class MyHappinessPage extends ConsumerWidget {
                 loading: () => const CircularProgressIndicator(),
                 error: (err, stack) => Text('Error: $err'),
                 data: (record) {
-                  return RecordListView(recordList: record);
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: RecordListView(recordList: record),
+                  );
                 },
               ),
             ),

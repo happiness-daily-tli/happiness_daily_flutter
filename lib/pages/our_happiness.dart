@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/components/common/appbar_widget.dart';
-import 'package:happiness_daily_flutter/components/common/record_list_view/index.dart';
+import 'package:happiness_daily_flutter/components/common/record_list_view/record_list_card_view.dart';
+import 'package:happiness_daily_flutter/happiness_theme.dart';
 import 'package:happiness_daily_flutter/models/record.dart';
 import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,6 +19,7 @@ class OurHappinessPage extends ConsumerWidget {
     AsyncValue<List<Record>> record = ref.watch(recordProvider);
 
     return Scaffold(
+      backgroundColor: gray,
       appBar: AppbarWidget(
         appBar: AppBar(),
         text: "우리의 행복",
@@ -30,9 +32,6 @@ class OurHappinessPage extends ConsumerWidget {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
         child: ListView(
           padding: EdgeInsets.zero,
           primary: true,
@@ -42,7 +41,7 @@ class OurHappinessPage extends ConsumerWidget {
                 loading: () => const CircularProgressIndicator(),
                 error: (err, stack) => Text('Error: $err'),
                 data: (record) {
-                  return RecordListView(recordList: record);
+                  return RecordListCardView(recordList: record);
                 },
               ),
             ),

@@ -19,8 +19,7 @@ class RecordListView extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       itemCount: recordList.length,
       itemBuilder: (context, index) {
-        final record = recordList[index];
-        return RecordTile(record: record);
+        return RecordTile(record: recordList[index]);
       },
       separatorBuilder: (context, index) {
         return SizedBox(height: 40);
