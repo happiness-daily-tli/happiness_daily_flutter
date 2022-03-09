@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:happiness_daily_flutter/components/common/bottom_button_widget.dart';
 
 class AlertDialogWidget extends StatelessWidget {

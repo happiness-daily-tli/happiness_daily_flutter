@@ -1,34 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_daily_flutter/components/common/alert_dialog_widget.dart';
 
 class RecordTileEditButton extends StatelessWidget {
-  final List<String> dropdownList;
+  final List<Map<String, dynamic>> dropdownList;
 
   const RecordTileEditButton({
     Key? key,
-    this.dropdownList = const ['수정', '삭제'],
+    this.dropdownList = const [
+      {'value': 'edit', 'text': '수정'},
+      {'value': 'delete', 'text': '삭제'}
+    ],
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    _openDeleteDialog() {
+      return showGeneralDialog(
+        context: context,
+        pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return AlertDialogWidget();
+        },
+      );
+    }
+
     return Container(
       height: 20,
       width: 60,
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          onChanged: (String? value) {},
+          onChanged: (value) {
+            if (value != 'edit') _openDeleteDialog();
+          },
           icon: Image.asset(
             'assets/images/common/icon/more.png',
             width: 20,
             height: 20,
           ),
-          items: dropdownList.map((String items) {
+          items: dropdownList.map((items) {
             final int idx = dropdownList.indexOf(items);
 
             return DropdownMenuItem(
-              value: items,
+              value: items['value'],
               child: Container(
-                height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
@@ -40,7 +55,7 @@ class RecordTileEditButton extends StatelessWidget {
                   ),
                 ), //
                 child: Center(
-                  child: Text(items),
+                  child: Text(items['text']),
                 ),
               ),
             );
