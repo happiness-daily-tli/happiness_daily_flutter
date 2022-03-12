@@ -17,11 +17,9 @@ class BottomButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+    return Expanded(
       child: Container(
         height: 56,
-        width: double.infinity,
         child: ElevatedButton(
           style: disabledThemeOnly
               ? ElevatedButton.styleFrom(

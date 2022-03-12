@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:happiness_daily_flutter/components/common/bottom_button_widget.dart';
+import 'package:happiness_daily_flutter/components/common/bottom_button_confirm_widget.dart';
+
+import 'bottom_button_alert_widget.dart';
 
 class AlertDialogWidget extends StatelessWidget {
+  final String headerText;
+  final String contentText;
+
+  const AlertDialogWidget({
+    Key? key,
+    this.headerText = '',
+    this.contentText = '',
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -14,22 +25,25 @@ class AlertDialogWidget extends StatelessWidget {
       ),
       title: Center(
         child: Text(
-          'Alert 공통 컴포넌트 헤더입니다.',
+          headerText,
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
       content: SingleChildScrollView(
         child: Center(
           child: Text(
-            'Alert 공통 컴포넌트 내용입니다.',
+            contentText,
             style: Theme.of(context).textTheme.bodyText2,
           ),
         ),
       ),
       actions: <Widget>[
-        BottomButtonWidget(
+        BottomButtonConfirmWidget(
+          onClickCancel: () => Navigator.pop(context),
+          onClickConfirm: () => Navigator.pop(context),
+        ),
+        BottomButtonAlertWidget(
           onClick: () => Navigator.pop(context),
-          labelText: '확인',
         ),
       ],
     );

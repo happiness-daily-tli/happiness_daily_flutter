@@ -19,7 +19,10 @@ class RecordTileEditButton extends StatelessWidget {
         context: context,
         pageBuilder: (BuildContext context, Animation<double> animation,
             Animation<double> secondaryAnimation) {
-          return AlertDialogWidget();
+          return AlertDialogWidget(
+            headerText: '나의 행복기록을 삭제하시겠어요?',
+            contentText: '삭제 후 데이터는 복구되지 않습니다.',
+          );
         },
       );
     }
