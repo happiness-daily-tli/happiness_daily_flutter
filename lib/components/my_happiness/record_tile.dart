@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/models/record.dart';
-import 'content.dart';
-import 'date.dart';
-import 'edit_button.dart';
-import 'header.dart';
-import 'slider.dart';
-import 'hashtag.dart';
-import 'status.dart';
-import 'weather.dart';
+import '../common/record_tile/index.dart';
 
 class RecordTile extends StatefulWidget {
   final Record record;

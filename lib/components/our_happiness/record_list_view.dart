@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/models/record.dart';
-import 'record_tile/index.dart';
+import 'record_tile.dart';
 
-class RecordListCardView extends StatelessWidget {
+class RecordListView extends StatelessWidget {
   final List<Record> recordList;
 
-  const RecordListCardView({
+  const RecordListView({
     Key? key,
     required this.recordList,
   }) : super(key: key);
