@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class RecordTileSlider extends StatefulWidget {
   final List<String> imageUrl;
+  final bool isRoundImage;
 
   const RecordTileSlider({
     Key? key,
     required this.imageUrl,
+    this.isRoundImage = false,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,12 @@ class _RecordTileSliderState extends State<RecordTileSlider> {
         CarouselSlider(
           items: widget.imageUrl
               .map(
-                (item) => Image.asset(item),
+                (item) => ClipRRect(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(widget.isRoundImage ? 10.0 : 0.0),
+                  ),
+                  child: Image.asset(item),
+                ),
               )
               .toList(),
           carouselController: _controller,

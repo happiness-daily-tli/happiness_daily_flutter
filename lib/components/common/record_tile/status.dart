@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 class RecordTileStatus extends StatelessWidget {
-  final bool isLock;
   final bool isHeart;
   final int heartCount;
   final int commentLength;
 
   const RecordTileStatus({
     Key? key,
-    required this.isLock,
     required this.isHeart,
     required this.heartCount,
     required this.commentLength,
@@ -51,13 +49,6 @@ class RecordTileStatus extends StatelessWidget {
               Text(commentLength.toString()),
             ],
           ),
-        ),
-        Image.asset(
-          isLock
-              ? 'assets/images/common/icon/lock.png'
-              : 'assets/images/common/icon/unlock.png',
-          width: 20,
-          height: 20,
         ),
       ],
     );

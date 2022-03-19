@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/components/common/appbar_widget.dart';
-import 'package:happiness_daily_flutter/components/our_happiness/record_list_view.dart';
+import 'package:happiness_daily_flutter/components/our_happiness/index.dart';
 import 'package:happiness_daily_flutter/happiness_theme.dart';
 import 'package:happiness_daily_flutter/models/record.dart';
 import 'package:happiness_daily_flutter/state/index.dart';

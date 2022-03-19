@@ -42,9 +42,6 @@ class AlertDialogWidget extends StatelessWidget {
           onClickCancel: () => Navigator.pop(context),
           onClickConfirm: () => Navigator.pop(context),
         ),
-        BottomButtonAlertWidget(
-          onClick: () => Navigator.pop(context),
-        ),
       ],
     );
   }

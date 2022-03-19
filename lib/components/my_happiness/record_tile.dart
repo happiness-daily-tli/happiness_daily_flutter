@@ -25,18 +25,31 @@ class _RecordTileState extends State<RecordTile> {
         SizedBox(
           height: 10,
         ),
-        RecordTileSlider(imageUrl: widget.record.imageUrl),
+        RecordTileSlider(
+          imageUrl: widget.record.imageUrl,
+          isRoundImage: true,
+        ),
         SizedBox(
           height: 10,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            RecordTileStatus(
-              isLock: widget.record.isLock,
-              isHeart: widget.record.isHeart,
-              heartCount: widget.record.heartCount,
-              commentLength: widget.record.comment.length,
+            Row(
+              children: [
+                RecordTileStatus(
+                  isHeart: widget.record.isHeart,
+                  heartCount: widget.record.heartCount,
+                  commentLength: widget.record.comment.length,
+                ),
+                Image.asset(
+                  widget.record.isLock
+                      ? 'assets/images/common/icon/lock.png'
+                      : 'assets/images/common/icon/unlock.png',
+                  width: 20,
+                  height: 20,
+                ),
+              ],
             ),
             RecordTileEditButton(),
           ],

@@ -21,7 +21,10 @@ class _RecordTileState extends State<RecordTile> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RecordTileHeader(user: widget.record.user),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: RecordTileHeader(user: widget.record.user),
+        ),
         SizedBox(
           height: 10,
         ),
@@ -29,34 +32,42 @@ class _RecordTileState extends State<RecordTile> {
         SizedBox(
           height: 10,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            RecordTileStatus(
-              isLock: widget.record.isLock,
-              isHeart: widget.record.isHeart,
-              heartCount: widget.record.heartCount,
-              commentLength: widget.record.comment.length,
-            ),
-            RecordTileEditButton(),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RecordTileStatus(
+                    isHeart: widget.record.isHeart,
+                    heartCount: widget.record.heartCount,
+                    commentLength: widget.record.comment.length,
+                  ),
+                  RecordTileReportButton(),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RecordTileWeather(weather: widget.record.weather),
+              SizedBox(
+                height: 10,
+              ),
+              RecordTileContent(content: widget.record.content),
+              SizedBox(
+                height: 10,
+              ),
+              RecordTileHashtag(hashtag: widget.record.hashtag),
+              SizedBox(
+                height: 10,
+              ),
+              RecordTileDate(date: widget.record.date),
+            ],
+          ),
         ),
-        SizedBox(
-          height: 10,
-        ),
-        RecordTileWeather(weather: widget.record.weather),
-        SizedBox(
-          height: 10,
-        ),
-        RecordTileContent(content: widget.record.content),
-        SizedBox(
-          height: 10,
-        ),
-        RecordTileHashtag(hashtag: widget.record.hashtag),
-        SizedBox(
-          height: 10,
-        ),
-        RecordTileDate(date: widget.record.date),
       ],
     );
   }
