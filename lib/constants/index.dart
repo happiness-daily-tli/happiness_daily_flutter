@@ -1,0 +1,4 @@
+enum ButtomType {
+  alert,
+  confirm,
+}

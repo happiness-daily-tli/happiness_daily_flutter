@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:happiness_daily_flutter/components/common/bottom_button_widget.dart';
+import 'package:happiness_daily_flutter/components/common/bottom_button_alert_widget.dart';
 import 'package:happiness_daily_flutter/components/common/time_picker_spinner_widget.dart';
 import 'package:happiness_daily_flutter/components/setting/permission_dialog.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -60,14 +60,14 @@ class _SettingAlertPageState extends ConsumerState<SettingAlertPage> {
               ],
             ),
           ),
-          BottomButtonWidget(
+          BottomButtonAlertWidget(
             onClick: _setAlert,
             labelText: '행복일기 시작하기',
           ),
           SizedBox(
             height: 10,
           ),
-          BottomButtonWidget(
+          BottomButtonAlertWidget(
             onClick: _openPermissionDialog,
             disabledThemeOnly: true,
             labelText: '나중에 할게요',

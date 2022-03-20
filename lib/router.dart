@@ -17,10 +17,10 @@ class RouterMyApp extends ConsumerWidget {
 
   _getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String username = prefs.getString('username') as String;
-    String usericon = prefs.getString('usericon') as String;
+    String? username = prefs.getString('username');
+    String? usericon = prefs.getString('usericon');
 
-    return [username, usericon];
+    return username != null ? [username, usericon] : ['', ''];
   }
 
   @override

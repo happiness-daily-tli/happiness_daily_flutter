@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:happiness_daily_flutter/components/common/bottom_button_widget.dart';
+import 'package:happiness_daily_flutter/components/common/bottom_button_alert_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:happiness_daily_flutter/state/app.dart';
 import 'package:image_picker/image_picker.dart';
@@ -68,7 +68,6 @@ class _SettingUserPageState extends ConsumerState<SettingUserPage> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('username', userNameController.text);
       prefs.setString('usericon', iconUrl);
-      print('hi');
       context.vRouter.to('/setting/alert');
     }
 
@@ -190,10 +189,9 @@ class _SettingUserPageState extends ConsumerState<SettingUserPage> {
                 ),
               ),
             ),
-            BottomButtonWidget(
+            BottomButtonAlertWidget(
               onClick: _setUser,
               disabled: userNameController.text == '',
-              labelText: '확인',
             ),
           ],
         ),
