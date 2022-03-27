@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'bottom_button_widget.dart';
 
 class BottomButtonConfirmWidget extends StatelessWidget {
-  final Function onClickConfirm;
+  final Function onClick;
   final Function onClickCancel;
 
   const BottomButtonConfirmWidget({
     Key? key,
-    required this.onClickConfirm,
+    required this.onClick,
     required this.onClickCancel,
   }) : super(key: key);
 
@@ -27,7 +27,7 @@ class BottomButtonConfirmWidget extends StatelessWidget {
             width: 10,
           ),
           BottomButtonWidget(
-            onClick: onClickConfirm,
+            onClick: onClick,
             labelText: '확인',
           ),
         ],

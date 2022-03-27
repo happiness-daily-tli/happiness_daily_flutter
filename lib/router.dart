@@ -17,10 +17,10 @@ class RouterMyApp extends ConsumerWidget {
 
   _getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? username = prefs.getString('username');
-    String? usericon = prefs.getString('usericon');
+    String? username = prefs.getString('username') ?? '';
+    String? usericon = prefs.getString('usericon') ?? '';
 
-    return username != null ? [username, usericon] : ['', ''];
+    return [username, usericon];
   }
 
   @override
@@ -30,7 +30,7 @@ class RouterMyApp extends ConsumerWidget {
     final userIcon = ref.read(userIconProvider);
 
     var isFirstEntry = true;
-    var testMode = false;
+    var testMode = true;
     var testUserName = true;
 
     return VRouter(

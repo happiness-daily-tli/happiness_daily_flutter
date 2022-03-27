@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/components/common/bottom_button_confirm_widget.dart';
+import 'package:happiness_daily_flutter/constants/index.dart';
 
 import 'bottom_button_alert_widget.dart';
 
 class AlertDialogWidget extends StatelessWidget {
+  final Widget contentWidget;
   final String headerText;
-  final String contentText;
+  final ButtomType bottomButtonType;
+  final Function? onClick;
+  final Function? onClickCancel;
 
   const AlertDialogWidget({
     Key? key,
+    required this.contentWidget,
     this.headerText = '',
-    this.contentText = '',
+    this.bottomButtonType = ButtomType.alert,
+    this.onClick,
+    this.onClickCancel,
   }) : super(key: key);
 
   @override
@@ -30,18 +37,17 @@ class AlertDialogWidget extends StatelessWidget {
         ),
       ),
       content: SingleChildScrollView(
-        child: Center(
-          child: Text(
-            contentText,
-            style: Theme.of(context).textTheme.bodyText2,
-          ),
-        ),
+        child: contentWidget,
       ),
       actions: <Widget>[
-        BottomButtonConfirmWidget(
-          onClickCancel: () => Navigator.pop(context),
-          onClickConfirm: () => Navigator.pop(context),
-        ),
+        bottomButtonType == ButtomType.alert
+            ? BottomButtonAlertWidget(
+                onClick: onClick ?? () => Navigator.pop(context),
+              )
+            : BottomButtonConfirmWidget(
+                onClickCancel: onClickCancel ?? () => Navigator.pop(context),
+                onClick: onClick ?? () => Navigator.pop(context),
+              )
       ],
     );
   }

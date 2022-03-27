@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/components/common/alert_dialog_widget.dart';
+import 'package:happiness_daily_flutter/constants/index.dart';
 
 class RecordTileEditButton extends StatelessWidget {
   final List<Map<String, dynamic>> dropdownList;
@@ -20,8 +21,14 @@ class RecordTileEditButton extends StatelessWidget {
         pageBuilder: (BuildContext context, Animation<double> animation,
             Animation<double> secondaryAnimation) {
           return AlertDialogWidget(
+            bottomButtonType: ButtomType.confirm,
             headerText: '나의 행복기록을 삭제하시겠어요?',
-            contentText: '삭제 후 데이터는 복구되지 않습니다.',
+            contentWidget: Center(
+              child: Text(
+                '삭제 후 데이터는 복구되지 않습니다.',
+                style: Theme.of(context).textTheme.bodyText2,
+              ),
+            ),
           );
         },
       );
