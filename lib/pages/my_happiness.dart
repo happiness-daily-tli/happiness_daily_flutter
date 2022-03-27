@@ -5,7 +5,7 @@ import 'package:happiness_daily_flutter/models/record.dart';
 import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class MyHappinessPage extends ConsumerWidget {
+class MyHappinessPage extends ConsumerStatefulWidget {
   final Function handleDrawer;
 
   const MyHappinessPage({
@@ -14,18 +14,46 @@ class MyHappinessPage extends ConsumerWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _MyHappinessPageState createState() => _MyHappinessPageState();
+}
+
+class _MyHappinessPageState extends ConsumerState<MyHappinessPage> {
+  final ScrollController _scrollController = ScrollController();
+  double _scrollPosition = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    ref.read(recordProvider);
+    _scrollController.addListener(() {
+      setState(() {
+        _scrollPosition = _scrollController.offset;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     AsyncValue<List<Record>> record = ref.watch(recordProvider);
+    print(_scrollPosition);
 
     return Scaffold(
       appBar: AppbarWidget(
         appBar: AppBar(),
-        text: "",
+        text: _scrollPosition > 600 ? '나의 행복' : '',
+        backgroundColor:
+            _scrollPosition > 600 ? Colors.white : Colors.transparent,
         leadingIconButton: Transform.scale(
           scale: 0.7,
           child: IconButton(
             icon: Image.asset('assets/images/common/icon/hamburger.png'),
-            onPressed: () => handleDrawer(),
+            onPressed: () => widget.handleDrawer(),
           ),
         ),
       ),
@@ -36,7 +64,7 @@ class MyHappinessPage extends ConsumerWidget {
         ),
         child: ListView(
           padding: EdgeInsets.zero,
-          primary: true,
+          controller: _scrollController,
           children: [
             Stack(
               alignment: Alignment.center,

@@ -4,6 +4,7 @@ import 'package:vrouter/vrouter.dart';
 class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   final AppBar appBar;
   final String text;
+  final Color? backgroundColor;
   final Widget? leadingIconButton;
   final Widget? actionTextButton;
 
@@ -11,6 +12,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
     Key? key,
     required this.appBar,
     this.text = '',
+    this.backgroundColor = Colors.transparent,
     this.leadingIconButton,
     this.actionTextButton,
   }) : super(key: key);
@@ -33,7 +35,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
         text,
         style: Theme.of(context).textTheme.headline4,
       ),
-      backgroundColor: Colors.transparent,
+      backgroundColor: backgroundColor,
       elevation: 0.0,
       leading: context.vRouter.historyCanBack() ? leadingIconButton : null,
       actions: getList(),
