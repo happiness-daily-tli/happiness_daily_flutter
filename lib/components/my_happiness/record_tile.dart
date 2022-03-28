@@ -15,6 +15,18 @@ class RecordTile extends StatefulWidget {
 }
 
 class _RecordTileState extends State<RecordTile> {
+  void _onChangeIsHeart() {
+    setState(() {
+      widget.record.isHeart = !widget.record.isHeart;
+    });
+  }
+
+  void _onChangeIsLock() {
+    setState(() {
+      widget.record.isLock = !widget.record.isLock;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,16 +50,22 @@ class _RecordTileState extends State<RecordTile> {
             Row(
               children: [
                 RecordTileStatus(
+                  onChangeIsHeart: _onChangeIsHeart,
                   isHeart: widget.record.isHeart,
                   heartCount: widget.record.heartCount,
                   commentLength: widget.record.comment.length,
                 ),
-                Image.asset(
-                  widget.record.isLock
-                      ? 'assets/images/common/icon/lock.png'
-                      : 'assets/images/common/icon/unlock.png',
-                  width: 20,
-                  height: 20,
+                GestureDetector(
+                  onTap: () {
+                    _onChangeIsLock();
+                  },
+                  child: Image.asset(
+                    widget.record.isLock
+                        ? 'assets/images/common/icon/lock.png'
+                        : 'assets/images/common/icon/unlock.png',
+                    width: 20,
+                    height: 20,
+                  ),
                 ),
               ],
             ),

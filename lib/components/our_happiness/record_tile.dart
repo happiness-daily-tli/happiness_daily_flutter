@@ -15,6 +15,12 @@ class RecordTile extends StatefulWidget {
 }
 
 class _RecordTileState extends State<RecordTile> {
+  void _onChangeIsHeart() {
+    setState(() {
+      widget.record.isHeart = !widget.record.isHeart;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,6 +48,7 @@ class _RecordTileState extends State<RecordTile> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RecordTileStatus(
+                    onChangeIsHeart: _onChangeIsHeart,
                     isHeart: widget.record.isHeart,
                     heartCount: widget.record.heartCount,
                     commentLength: widget.record.comment.length,
