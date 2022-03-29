@@ -6,7 +6,7 @@ import 'package:happiness_daily_flutter/models/record.dart';
 import 'package:happiness_daily_flutter/state/index.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class OurHappinessPage extends ConsumerWidget {
+class OurHappinessPage extends ConsumerStatefulWidget {
   final Function handleDrawer;
 
   const OurHappinessPage({
@@ -15,7 +15,33 @@ class OurHappinessPage extends ConsumerWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _OurHappinessPageState createState() => _OurHappinessPageState();
+}
+
+class _OurHappinessPageState extends ConsumerState<OurHappinessPage> {
+  final ScrollController _scrollController = ScrollController();
+  double _scrollPosition = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    ref.read(recordProvider);
+    ;
+    _scrollController.addListener(() {
+      setState(() {
+        _scrollPosition = _scrollController.offset;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     AsyncValue<List<Record>> record = ref.watch(recordProvider);
 
     return Scaffold(
@@ -23,18 +49,20 @@ class OurHappinessPage extends ConsumerWidget {
       appBar: AppbarWidget(
         appBar: AppBar(),
         text: "우리의 행복",
+        backgroundColor:
+            _scrollPosition > 100 ? Colors.white : Colors.transparent,
         leadingIconButton: Transform.scale(
           scale: 0.7,
           child: IconButton(
             icon: Image.asset('assets/images/common/icon/hamburger.png'),
-            onPressed: () => handleDrawer(),
+            onPressed: () => widget.handleDrawer(),
           ),
         ),
       ),
       body: Container(
         child: ListView(
           padding: EdgeInsets.zero,
-          primary: true,
+          controller: _scrollController,
           children: [
             Center(
               child: record.when(

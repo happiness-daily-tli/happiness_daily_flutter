@@ -41,7 +41,6 @@ class _MyHappinessPageState extends ConsumerState<MyHappinessPage> {
   @override
   Widget build(BuildContext context) {
     AsyncValue<List<Record>> record = ref.watch(recordProvider);
-    print(_scrollPosition);
 
     return Scaffold(
       appBar: AppbarWidget(
