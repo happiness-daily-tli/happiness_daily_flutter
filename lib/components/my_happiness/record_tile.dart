@@ -62,7 +62,7 @@ class _RecordTileState extends State<RecordTile> {
                   child: Image.asset(
                     widget.record.isLock
                         ? 'assets/images/common/icon/lock.png'
-                        : 'assets/images/common/icon/unlock.png',
+                        : 'assets/images/common/icon/lock_unlock.png',
                     width: 20,
                     height: 20,
                   ),
