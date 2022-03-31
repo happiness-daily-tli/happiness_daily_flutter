@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/components/common/appbar_widget.dart';
 import 'package:happiness_daily_flutter/happiness_theme.dart';
+import 'package:happiness_daily_flutter/models/weather.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:vrouter/vrouter.dart';
@@ -12,6 +13,7 @@ class WritePage extends StatefulWidget {
 
 class _WritePageState extends State<WritePage> {
   DateTime nowDate = DateTime.now();
+  int selectedWeatherIndex = 0;
 
   @override
   void initState() {
@@ -24,6 +26,12 @@ class _WritePageState extends State<WritePage> {
   Widget build(BuildContext context) {
     String formattedDate = DateFormat('yyyy.MM.dd', 'ko').format(nowDate);
     String formattedWeek = DateFormat('(E)', 'ko').format(nowDate);
+
+    void _onChangeWeatherIndex(int index) {
+      setState(() {
+        selectedWeatherIndex = index;
+      });
+    }
 
     return Scaffold(
       appBar: AppbarWidget(
@@ -67,36 +75,75 @@ class _WritePageState extends State<WritePage> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                formattedDate,
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                ),
+                              ),
+                              SizedBox(width: 4.0),
+                              Text(
+                                formattedWeek,
+                                style: TextStyle(
+                                  height: 1.3,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              formattedDate,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontFamily: 'Poppins',
-                                color: black,
+                            for (int i = 0; i < weatherList.length; i++)
+                              GestureDetector(
+                                onTap: () => _onChangeWeatherIndex(i),
+                                child: Column(
+                                  children: i == selectedWeatherIndex
+                                      ? [
+                                          Container(
+                                            width: 34,
+                                            height: 34,
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFFF2F1FF),
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                            ),
+                                            child: Center(
+                                              child: Image.asset(
+                                                weatherList[i].imageUrl,
+                                                height: 20,
+                                                width: 20,
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            weatherList[i].name,
+                                            style: TextStyle(fontSize: 10.0),
+                                          ),
+                                        ]
+                                      : [
+                                          Container(
+                                            width: 34,
+                                            height: 34,
+                                            child: Center(
+                                              child: Image.asset(
+                                                weatherList[i].imageDisabledUrl,
+                                                height: 20,
+                                                width: 20,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 4.0),
-                            Text(
-                              formattedWeek,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                color: black,
-                                wordSpacing: -0.05,
-                                height: 1.3,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text('비'),
-                            Text('흐림'),
-                            Text('맑음'),
-                            Text('행복'),
                           ],
                         ),
                       ],
@@ -113,25 +160,6 @@ class _WritePageState extends State<WritePage> {
                     ),
                     Text('#태그입력')
                   ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        height: 83,
-        color: purple,
-        child: InkWell(
-          onTap: () => {},
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 23.0),
-            child: Center(
-              child: Text(
-                '행복 업로드',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
