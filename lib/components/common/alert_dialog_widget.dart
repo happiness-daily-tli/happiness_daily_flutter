@@ -5,16 +5,18 @@ import 'package:happiness_daily_flutter/constants/index.dart';
 import 'bottom_button_alert_widget.dart';
 
 class AlertDialogWidget extends StatelessWidget {
-  final Widget contentWidget;
+  final Widget? contentWidget;
   final String headerText;
+  final String headerSecondText;
   final ButtomType bottomButtonType;
   final Function? onClick;
   final Function? onClickCancel;
 
   const AlertDialogWidget({
     Key? key,
-    required this.contentWidget,
+    this.contentWidget,
     this.headerText = '',
+    this.headerSecondText = '',
     this.bottomButtonType = ButtomType.alert,
     this.onClick,
     this.onClickCancel,
@@ -30,15 +32,27 @@ class AlertDialogWidget extends StatelessWidget {
         borderSide: BorderSide(color: Colors.transparent, width: 0.0),
         borderRadius: BorderRadius.circular(20.0),
       ),
-      title: Center(
-        child: Text(
-          headerText,
-          style: Theme.of(context).textTheme.headline4,
-        ),
+      title: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            headerText,
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          SizedBox(
+            height: 5.0,
+          ),
+          if (headerSecondText != '')
+            Text(
+              headerSecondText,
+              style: Theme.of(context).textTheme.headline4,
+            ),
+        ],
       ),
-      content: SingleChildScrollView(
-        child: contentWidget,
-      ),
+      content: contentWidget ??
+          SingleChildScrollView(
+            child: contentWidget,
+          ),
       actions: <Widget>[
         bottomButtonType == ButtomType.alert
             ? BottomButtonAlertWidget(

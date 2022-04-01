@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_daily_flutter/components/common/alert_dialog_widget.dart';
 import 'package:happiness_daily_flutter/components/common/appbar_widget.dart';
+import 'package:happiness_daily_flutter/constants/index.dart';
 import 'package:happiness_daily_flutter/happiness_theme.dart';
 import 'package:happiness_daily_flutter/models/weather.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -33,6 +35,20 @@ class _WritePageState extends State<WritePage> {
       });
     }
 
+    _openDialog() {
+      return showGeneralDialog(
+        context: context,
+        pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return AlertDialogWidget(
+            bottomButtonType: ButtomType.alert,
+            headerText: '사진은 최대 4개까지',
+            headerSecondText: '등록 가능해요',
+          );
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppbarWidget(
         appBar: AppBar(),
@@ -45,7 +61,7 @@ class _WritePageState extends State<WritePage> {
           onPressed: context.vRouter.historyBack,
         ),
         actionTextButton: TextButton(
-          onPressed: () => {},
+          onPressed: () => _openDialog(),
           child: Text(
             '등록',
             style: TextStyle(color: black),
@@ -148,6 +164,32 @@ class _WritePageState extends State<WritePage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 10.0),
+                    Row(
+                      children: [
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                            border: Border.all(
+                              width: 1,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              'assets/images/common/icon/camera.png',
+                              width: 30,
+                              height: 30,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 20.0),
                     Expanded(
                       child: TextField(
                         decoration: InputDecoration(
