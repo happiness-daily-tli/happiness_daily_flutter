@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:happiness_daily_flutter/components/common/alert_dialog_widget.dart';
 import 'package:happiness_daily_flutter/components/common/appbar_widget.dart';
-import 'package:happiness_daily_flutter/constants/index.dart';
+import 'package:happiness_daily_flutter/components/write/index.dart';
 import 'package:happiness_daily_flutter/happiness_theme.dart';
-import 'package:happiness_daily_flutter/models/weather.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
 import 'package:vrouter/vrouter.dart';
 
 class WritePage extends StatefulWidget {
@@ -14,89 +10,8 @@ class WritePage extends StatefulWidget {
 }
 
 class _WritePageState extends State<WritePage> {
-  DateTime nowDate = DateTime.now();
-  int selectedWeatherIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    initializeDateFormatting();
-  }
-
   @override
   Widget build(BuildContext context) {
-    String formattedDate = DateFormat('yyyy.MM.dd', 'ko').format(nowDate);
-    String formattedWeek = DateFormat('(E)', 'ko').format(nowDate);
-
-    void _onChangeWeatherIndex(int index) {
-      setState(() {
-        selectedWeatherIndex = index;
-      });
-    }
-
-    _openSelectPictureTypeDialog() {
-      return showGeneralDialog(
-        barrierDismissible: true,
-        barrierLabel:
-            MaterialLocalizations.of(context).modalBarrierDismissLabel,
-        context: context,
-        pageBuilder: (BuildContext context, Animation<double> animation,
-            Animation<double> secondaryAnimation) {
-          return AlertDialogWidget(
-            bottomButtonType: ButtomType.none,
-            headerText: '사진을 선택해주세요.',
-            contentWidget: Column(
-              children: [
-                Container(
-                  height: 60,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('갤러리'),
-                        Image.asset(
-                          'assets/images/common/icon/gallery.png',
-                          height: 30,
-                          width: 30,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 0.5,
-                      color: Color(0xFFEEEEEE),
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 60,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('카메라'),
-                        Image.asset(
-                          'assets/images/common/icon/camera.png',
-                          height: 30,
-                          width: 30,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      );
-    }
-
     return Scaffold(
       appBar: AppbarWidget(
         appBar: AppBar(),
@@ -109,7 +24,7 @@ class _WritePageState extends State<WritePage> {
           onPressed: context.vRouter.historyBack,
         ),
         actionTextButton: TextButton(
-          onPressed: () => _openSelectPictureTypeDialog(),
+          onPressed: () => {},
           child: Text(
             '등록',
             style: TextStyle(color: black),
@@ -143,115 +58,22 @@ class _WritePageState extends State<WritePage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                formattedDate,
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
-                              SizedBox(width: 4.0),
-                              Text(
-                                formattedWeek,
-                                style: TextStyle(
-                                  height: 1.3,
-                                ),
-                              ),
-                            ],
-                          ),
+                          child: NowDate(),
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            for (int i = 0; i < weatherList.length; i++)
-                              GestureDetector(
-                                onTap: () => _onChangeWeatherIndex(i),
-                                child: Column(
-                                  children: i == selectedWeatherIndex
-                                      ? [
-                                          Container(
-                                            width: 34,
-                                            height: 34,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFF2F1FF),
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                            ),
-                                            child: Center(
-                                              child: Image.asset(
-                                                weatherList[i].imageUrl,
-                                                height: 20,
-                                                width: 20,
-                                              ),
-                                            ),
-                                          ),
-                                          Text(
-                                            weatherList[i].name,
-                                            style: TextStyle(fontSize: 10.0),
-                                          ),
-                                        ]
-                                      : [
-                                          Container(
-                                            width: 34,
-                                            height: 34,
-                                            child: Center(
-                                              child: Image.asset(
-                                                weatherList[i].imageDisabledUrl,
-                                                height: 20,
-                                                width: 20,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                ),
-                              ),
-                          ],
-                        ),
+                        Weather(),
                       ],
                     ),
                     SizedBox(height: 10.0),
                     Row(
                       children: [
-                        GestureDetector(
-                          onTap: () => _openSelectPictureTypeDialog(),
-                          child: Container(
-                            width: 60,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                              border: Border.all(
-                                width: 1,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-                            child: Center(
-                              child: Image.asset(
-                                'assets/images/common/icon/camera.png',
-                                width: 30,
-                                height: 30,
-                              ),
-                            ),
-                          ),
-                        )
+                        SelectPicture(),
                       ],
                     ),
                     SizedBox(height: 20.0),
                     Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                            hintText: '당신만이 누리고 있는 행복을 붙잡아 기록해보세요.'),
-                        maxLength: 400,
-                        minLines: null,
-                        maxLines: null,
-                        expands: true,
-                      ),
+                      child: HappinessTextField(),
                     ),
-                    Text('#태그입력')
+                    SelectTag(),
                   ],
                 ),
               ),
