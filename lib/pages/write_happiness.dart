@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/components/common/appbar_widget.dart';
-import 'package:happiness_daily_flutter/components/write/index.dart';
+import 'package:happiness_daily_flutter/components/write_happiness/index.dart';
 import 'package:happiness_daily_flutter/happiness_theme.dart';
 import 'package:vrouter/vrouter.dart';
 
-class WritePage extends StatefulWidget {
+class WriteHappinessPage extends StatefulWidget {
   @override
-  State<WritePage> createState() => _WritePageState();
+  State<WriteHappinessPage> createState() => _WriteHappinessPageState();
 }
 
-class _WritePageState extends State<WritePage> {
+class _WriteHappinessPageState extends State<WriteHappinessPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

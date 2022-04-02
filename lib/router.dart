@@ -99,7 +99,7 @@ class RouterMyApp extends ConsumerWidget {
             ),
             VWidget(
               path: '/write',
-              widget: WritePage(),
+              widget: WriteHappinessPage(),
               buildTransition: (animation, _, child) => SlideTransition(
                 position: animation.drive(
                   Tween(begin: Offset(0.0, 1.0), end: Offset.zero).chain(
