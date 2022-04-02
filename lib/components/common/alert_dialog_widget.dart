@@ -24,10 +24,15 @@ class AlertDialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double bottomButttonPadding = bottomButtonType == ButtomType.none ? 0 : 10;
+
     return AlertDialog(
       titlePadding: EdgeInsets.fromLTRB(0, 40, 0, 10),
       contentPadding: EdgeInsets.zero,
-      actionsPadding: EdgeInsets.symmetric(vertical: 10),
+      actionsPadding: EdgeInsets.symmetric(
+        vertical: bottomButttonPadding,
+      ),
+      buttonPadding: EdgeInsets.all(bottomButttonPadding),
       shape: OutlineInputBorder(
         borderSide: BorderSide(color: Colors.transparent, width: 0.0),
         borderRadius: BorderRadius.circular(20.0),
@@ -49,19 +54,19 @@ class AlertDialogWidget extends StatelessWidget {
             ),
         ],
       ),
-      content: contentWidget ??
-          SingleChildScrollView(
-            child: contentWidget,
-          ),
+      content: SingleChildScrollView(
+        child: contentWidget,
+      ),
       actions: <Widget>[
-        bottomButtonType == ButtomType.alert
-            ? BottomButtonAlertWidget(
-                onClick: onClick ?? () => Navigator.pop(context),
-              )
-            : BottomButtonConfirmWidget(
-                onClickCancel: onClickCancel ?? () => Navigator.pop(context),
-                onClick: onClick ?? () => Navigator.pop(context),
-              )
+        if (bottomButtonType == ButtomType.alert)
+          BottomButtonAlertWidget(
+            onClick: onClick ?? () => Navigator.pop(context),
+          ),
+        if (bottomButtonType == ButtomType.confirm)
+          BottomButtonConfirmWidget(
+            onClickCancel: onClickCancel ?? () => Navigator.pop(context),
+            onClick: onClick ?? () => Navigator.pop(context),
+          ),
       ],
     );
   }

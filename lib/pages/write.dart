@@ -35,15 +35,63 @@ class _WritePageState extends State<WritePage> {
       });
     }
 
-    _openDialog() {
+    _openSelectPictureTypeDialog() {
       return showGeneralDialog(
+        barrierDismissible: true,
+        barrierLabel:
+            MaterialLocalizations.of(context).modalBarrierDismissLabel,
         context: context,
         pageBuilder: (BuildContext context, Animation<double> animation,
             Animation<double> secondaryAnimation) {
           return AlertDialogWidget(
-            bottomButtonType: ButtomType.alert,
-            headerText: '사진은 최대 4개까지',
-            headerSecondText: '등록 가능해요',
+            bottomButtonType: ButtomType.none,
+            headerText: '사진을 선택해주세요.',
+            contentWidget: Column(
+              children: [
+                Container(
+                  height: 60,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('갤러리'),
+                        Image.asset(
+                          'assets/images/common/icon/gallery.png',
+                          height: 30,
+                          width: 30,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 0.5,
+                      color: Color(0xFFEEEEEE),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 60,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('카메라'),
+                        Image.asset(
+                          'assets/images/common/icon/camera.png',
+                          height: 30,
+                          width: 30,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         },
       );
@@ -61,7 +109,7 @@ class _WritePageState extends State<WritePage> {
           onPressed: context.vRouter.historyBack,
         ),
         actionTextButton: TextButton(
-          onPressed: () => _openDialog(),
+          onPressed: () => _openSelectPictureTypeDialog(),
           child: Text(
             '등록',
             style: TextStyle(color: black),
@@ -167,23 +215,26 @@ class _WritePageState extends State<WritePage> {
                     SizedBox(height: 10.0),
                     Row(
                       children: [
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10.0),
+                        GestureDetector(
+                          onTap: () => _openSelectPictureTypeDialog(),
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                              border: Border.all(
+                                width: 1,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
                             ),
-                            border: Border.all(
-                              width: 1,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/images/common/icon/camera.png',
-                              width: 30,
-                              height: 30,
+                            child: Center(
+                              child: Image.asset(
+                                'assets/images/common/icon/camera.png',
+                                width: 30,
+                                height: 30,
+                              ),
                             ),
                           ),
                         )

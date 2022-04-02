@@ -1,4 +1,1 @@
-enum ButtomType {
-  alert,
-  confirm,
-}
+enum ButtomType { alert, confirm, none }
