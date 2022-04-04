@@ -73,7 +73,10 @@ class _WriteHappinessPageState extends State<WriteHappinessPage> {
                     Expanded(
                       child: HappinessTextField(),
                     ),
+                    SizedBox(height: 20.0),
                     SelectTag(),
+                    SizedBox(height: 20.0),
+                    UnlockToggle(),
                   ],
                 ),
               ),
