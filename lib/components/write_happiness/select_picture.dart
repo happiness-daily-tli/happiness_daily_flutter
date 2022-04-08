@@ -114,24 +114,46 @@ class _SelectPictureState extends State<SelectPicture> {
       );
     }
 
-    return GestureDetector(
-      onTap: () => _openSelectPictureTypeDialog(),
-      child: Row(
-        children: [
-          Row(
-            children: images.map(
-              (image) {
-                return Container(
+    return Row(
+      children: [
+        Row(
+          children: images.map(
+            (image) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Container(
                   width: 60,
                   height: 60,
-                  child: Image.asset(
-                    image,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                    image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: AssetImage(image),
+                    ),
                   ),
-                );
-              },
-            ).toList(),
-          ),
-          Container(
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 4,
+                        right: 4,
+                        child: Image.asset(
+                          'assets/images/common/icon/cross.png',
+                          width: 20,
+                          height: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ).toList(),
+        ),
+        GestureDetector(
+          onTap: () => _openSelectPictureTypeDialog(),
+          child: Container(
             width: 60,
             height: 60,
             decoration: BoxDecoration(
@@ -151,8 +173,8 @@ class _SelectPictureState extends State<SelectPicture> {
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
