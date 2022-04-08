@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_daily_flutter/components/common/alert_dialog_widget.dart';
 import 'package:happiness_daily_flutter/components/common/appbar_widget.dart';
 import 'package:happiness_daily_flutter/components/write_happiness/index.dart';
+import 'package:happiness_daily_flutter/constants/index.dart';
 import 'package:happiness_daily_flutter/happiness_theme.dart';
 import 'package:vrouter/vrouter.dart';
 
@@ -10,6 +12,58 @@ class WriteHappinessPage extends StatefulWidget {
 }
 
 class _WriteHappinessPageState extends State<WriteHappinessPage> {
+  _openLevelupDialog() {
+    return showGeneralDialog(
+      context: context,
+      pageBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
+        return AlertDialogWidget(
+          bottomButtonType: ButtomType.alert,
+          headerText: '행복 레벨업을 축하해요!',
+          onClick: context.vRouter.historyBack,
+        );
+      },
+    );
+  }
+
+  _saveExp() {
+    Navigator.pop(context);
+    _openLevelupDialog();
+  }
+
+  _openSaveCompleteDialog() {
+    return showGeneralDialog(
+      context: context,
+      pageBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
+        return AlertDialogWidget(
+          bottomButtonType: ButtomType.alert,
+          headerText: '1번째 행복일기를',
+          headerSecondText: '저장했습니다.',
+          onClick: _saveExp,
+        );
+      },
+    );
+  }
+
+  _openErrorDialog(String message) {
+    return showGeneralDialog(
+      context: context,
+      pageBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
+        return AlertDialogWidget(
+          bottomButtonType: ButtomType.alert,
+          headerText: message,
+          onClick: _openLevelupDialog,
+        );
+      },
+    );
+  }
+
+  _saveHappiness() {
+    _openSaveCompleteDialog();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +77,16 @@ class _WriteHappinessPageState extends State<WriteHappinessPage> {
           ),
           onPressed: context.vRouter.historyBack,
         ),
-        actionTextButton: TextButton(
-          onPressed: () => {},
-          child: Text(
-            '등록',
-            style: TextStyle(color: black),
+        actionTextButton: GestureDetector(
+          onTap: () => _saveHappiness(),
+          child: Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Center(
+              child: Text(
+                '등록',
+                style: TextStyle(color: black),
+              ),
+            ),
           ),
         ),
       ),
@@ -64,11 +123,7 @@ class _WriteHappinessPageState extends State<WriteHappinessPage> {
                       ],
                     ),
                     SizedBox(height: 10.0),
-                    Row(
-                      children: [
-                        SelectPicture(),
-                      ],
-                    ),
+                    SelectPicture(),
                     SizedBox(height: 20.0),
                     Expanded(
                       child: HappinessTextField(),

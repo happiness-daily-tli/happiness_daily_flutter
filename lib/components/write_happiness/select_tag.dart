@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_daily_flutter/happiness_theme.dart';
 
 class SelectTag extends StatelessWidget {
   const SelectTag({
@@ -7,6 +8,9 @@ class SelectTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('#태그입력');
+    return Text(
+      '#태그입력',
+      style: TextStyle(color: purple),
+    );
   }
 }
