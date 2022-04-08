@@ -18,6 +18,12 @@ class _SelectPictureState extends State<SelectPicture> {
     super.initState();
   }
 
+  _deletePicture(int index) {
+    setState(() {
+      images.removeAt(index);
+    });
+  }
+
   Future<void> _pickImg(bool isCamera) async {
     final XFile? image = await _picker.pickImage(
       source: isCamera ? ImageSource.camera : ImageSource.gallery,
@@ -119,6 +125,8 @@ class _SelectPictureState extends State<SelectPicture> {
         Row(
           children: images.map(
             (image) {
+              final int index = images.indexOf(image);
+
               return Padding(
                 padding: const EdgeInsets.only(right: 10.0),
                 child: Container(
@@ -138,10 +146,13 @@ class _SelectPictureState extends State<SelectPicture> {
                       Positioned(
                         top: 4,
                         right: 4,
-                        child: Image.asset(
-                          'assets/images/common/icon/cross.png',
-                          width: 20,
-                          height: 20,
+                        child: GestureDetector(
+                          onTap: () => _deletePicture(index),
+                          child: Image.asset(
+                            'assets/images/common/icon/cross.png',
+                            width: 20,
+                            height: 20,
+                          ),
                         ),
                       ),
                     ],
@@ -151,29 +162,30 @@ class _SelectPictureState extends State<SelectPicture> {
             },
           ).toList(),
         ),
-        GestureDetector(
-          onTap: () => _openSelectPictureTypeDialog(),
-          child: Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(10.0),
+        if (images.length < 4)
+          GestureDetector(
+            onTap: () => _openSelectPictureTypeDialog(),
+            child: Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10.0),
+                ),
+                border: Border.all(
+                  width: 1,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
-              border: Border.all(
-                width: 1,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-            child: Center(
-              child: Image.asset(
-                'assets/images/common/icon/camera.png',
-                width: 30,
-                height: 30,
+              child: Center(
+                child: Image.asset(
+                  'assets/images/common/icon/camera.png',
+                  width: 30,
+                  height: 30,
+                ),
               ),
             ),
           ),
-        ),
       ],
     );
   }
