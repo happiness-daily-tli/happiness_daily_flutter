@@ -59,22 +59,21 @@ class _OurHappinessPageState extends ConsumerState<OurHappinessPage> {
           ),
         ),
       ),
-      body: Container(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          controller: _scrollController,
-          children: [
-            Center(
-              child: record.when(
-                loading: () => const CircularProgressIndicator(),
-                error: (err, stack) => Text('Error: $err'),
-                data: (record) {
-                  return RecordListView(recordList: record);
-                },
-              ),
+      body: ListView(
+        padding: EdgeInsets.zero,
+        controller: _scrollController,
+        children: [
+          RecordListHeader(),
+          Center(
+            child: record.when(
+              loading: () => const CircularProgressIndicator(),
+              error: (err, stack) => Text('Error: $err'),
+              data: (record) {
+                return RecordListView(recordList: record);
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
