@@ -23,7 +23,7 @@ class RecordTileEditButton extends StatelessWidget {
           return AlertDialogWidget(
             bottomButtonType: ButtomType.confirm,
             headerText: '나의 행복기록을 삭제하시겠어요?',
-            contentWidget: Center(
+            content: Center(
               child: Text(
                 '삭제 후 데이터는 복구되지 않습니다.',
                 style: Theme.of(context).textTheme.bodyText2,

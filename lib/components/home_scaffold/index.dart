@@ -23,21 +23,29 @@ class HomeScaffold extends StatelessWidget {
       drawer: DrawerWidget(),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(top: 30),
-        child: Container(
-          height: 60,
-          width: 60,
-          child: FloatingActionButton(
-            backgroundColor: purple,
-            child: SvgPicture.asset('assets/images/footer/tab_center.svg'),
-            onPressed: () => {
-              context.vRouter.to('/write'),
-            },
-          ),
-        ),
-      ),
-      bottomNavigationBar: BottomNavigaionBarWidget(),
+      floatingActionButton: !context.vRouter.path.contains('write')
+          ? Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Container(
+                height: 60,
+                width: 60,
+                child: FloatingActionButton(
+                  backgroundColor: purple,
+                  child:
+                      SvgPicture.asset('assets/images/footer/tab_center.svg'),
+                  onPressed: () => {
+                    if (context.vRouter.path == '/')
+                      context.vRouter.to('/write'),
+                    if (context.vRouter.path == '/our')
+                      context.vRouter.to('/our/write')
+                  },
+                ),
+              ),
+            )
+          : null,
+      bottomNavigationBar: !context.vRouter.path.contains('write')
+          ? BottomNavigaionBarWidget()
+          : null,
     );
   }
 }

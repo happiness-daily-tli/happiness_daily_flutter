@@ -15,7 +15,7 @@ class PermissionDialog extends StatelessWidget {
       bottomButtonType: ButtomType.alert,
       headerText: '행복일기 앱 사용권한 안내',
       onClick: _goToMyHappiness,
-      contentWidget: ListBody(
+      content: ListBody(
         children: [
           Padding(
             padding: const EdgeInsets.all(20.0),

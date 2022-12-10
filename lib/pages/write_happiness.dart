@@ -31,14 +31,14 @@ class _WriteHappinessPageState extends State<WriteHappinessPage> {
     _openLevelupDialog();
   }
 
-  _openSaveCompleteDialog() {
+  _openSaveCompleteDialog(int number) {
     return showGeneralDialog(
       context: context,
       pageBuilder: (BuildContext context, Animation<double> animation,
           Animation<double> secondaryAnimation) {
         return AlertDialogWidget(
           bottomButtonType: ButtomType.alert,
-          headerText: '1번째 행복일기를',
+          headerText: '$number번째 행복일기를',
           headerSecondText: '저장했습니다.',
           onClick: _saveExp,
         );
@@ -61,7 +61,7 @@ class _WriteHappinessPageState extends State<WriteHappinessPage> {
   }
 
   _saveHappiness() {
-    _openSaveCompleteDialog();
+    _openSaveCompleteDialog(1);
   }
 
   @override
@@ -117,9 +117,9 @@ class _WriteHappinessPageState extends State<WriteHappinessPage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
-                          child: NowDate(),
+                          child: CurrentDate(),
                         ),
-                        Weather(),
+                        SelectWeather(),
                       ],
                     ),
                     SizedBox(height: 10.0),

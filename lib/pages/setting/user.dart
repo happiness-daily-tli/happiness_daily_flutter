@@ -55,16 +55,11 @@ class _SettingUserPageState extends ConsumerState<SettingUserPage> {
 
   @override
   Widget build(BuildContext context) {
-    final userName = ref.watch(userNameProvider);
-    final userIcon = ref.watch(userIconProvider);
-
     _setUser() async {
       if (isDuplication) {
         _turnOffDuplication();
         return;
       }
-      userName.state = userNameController.text;
-      userIcon.state = iconUrl;
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('username', userNameController.text);
       prefs.setString('usericon', iconUrl);

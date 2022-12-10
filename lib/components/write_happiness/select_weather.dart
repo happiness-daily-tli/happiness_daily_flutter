@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:happiness_daily_flutter/models/index.dart';
 
-class Weather extends StatefulWidget {
+class SelectWeather extends StatefulWidget {
   @override
-  State<Weather> createState() => _WeatherState();
+  State<SelectWeather> createState() => _SelectWeatherState();
 }
 
-class _WeatherState extends State<Weather> {
+class _SelectWeatherState extends State<SelectWeather> {
   int selectedWeatherIndex = 0;
 
   @override

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-class NowDate extends StatefulWidget {
-  const NowDate({
+class CurrentDate extends StatefulWidget {
+  const CurrentDate({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<NowDate> createState() => _NowDateState();
+  State<CurrentDate> createState() => _CurrentDateState();
 }
 
-class _NowDateState extends State<NowDate> {
+class _CurrentDateState extends State<CurrentDate> {
   @override
   void initState() {
     super.initState();

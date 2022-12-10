@@ -51,7 +51,7 @@ class _SelectPictureState extends State<SelectPicture> {
           return AlertDialogWidget(
             bottomButtonType: ButtomType.none,
             headerText: '사진을 선택해주세요.',
-            contentWidget: Column(
+            content: Column(
               children: [
                 TextButton(
                   onPressed: () => _pickImg(false),

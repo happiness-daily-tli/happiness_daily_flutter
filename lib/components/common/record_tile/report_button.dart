@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happiness_daily_flutter/happiness_theme.dart';
 
 class RecordTileReportButton extends StatelessWidget {
   final List<Map<String, dynamic>> dropdownList;
@@ -41,7 +42,13 @@ class RecordTileReportButton extends StatelessWidget {
                   ),
                 ), //
                 child: Center(
-                  child: Text(items['text']),
+                  child: Text(
+                    items['text'],
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: purple,
+                    ),
+                  ),
                 ),
               ),
             );

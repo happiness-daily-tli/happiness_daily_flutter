@@ -26,8 +26,7 @@ class RouterMyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = HappinessTheme.light();
-    final userName = ref.read(userNameProvider);
-    final userIcon = ref.read(userIconProvider);
+    var userName = ref.read(userNameProvider);
 
     var isFirstEntry = true;
     var testMode = false;
@@ -55,9 +54,8 @@ class RouterMyApp extends ConsumerWidget {
                   return;
                 }
                 final List<String> user = await _getUser();
-                userName.state = user[0];
-                userIcon.state = user[1];
-                if (userName.state == '') {
+                userName = user[0];
+                if (userName == '') {
                   vRedirector.to('/setting/user');
                   return;
                 }
@@ -72,42 +70,62 @@ class RouterMyApp extends ConsumerWidget {
                 scaffoldkKey: scaffoldkKey,
                 child: child,
               ),
-              buildTransition: (animation, _, child) => SlideTransition(
-                position: animation.drive(
-                  Tween(begin: Offset(1.0, 0.0), end: Offset.zero).chain(
-                    CurveTween(curve: Curves.ease),
-                  ),
-                ),
-                child: child,
-              ),
               nestedRoutes: [
                 VWidget(
                   path: null,
                   widget: MyHappinessPage(handleDrawer: _handleDrawer),
-                  buildTransition: (animation, _, child) =>
-                      FadeTransition(opacity: animation, child: child),
+                  buildTransition: (animation, _, child) => SlideTransition(
+                    position: animation.drive(
+                      Tween(begin: Offset(-1.0, 0.0), end: Offset.zero).chain(
+                        CurveTween(curve: Curves.ease),
+                      ),
+                    ),
+                    child: child,
+                  ),
+                  stackedRoutes: [
+                    VWidget(
+                      path: 'write',
+                      widget: WriteHappinessPage(),
+                      buildTransition: (animation, _, child) => SlideTransition(
+                        position: animation.drive(
+                          Tween(begin: Offset(0.0, 1.0), end: Offset.zero)
+                              .chain(
+                            CurveTween(curve: Curves.ease),
+                          ),
+                        ),
+                        child: child,
+                      ),
+                    ),
+                  ],
                 ),
                 VWidget(
                   path: 'our',
                   widget: OurHappinessPage(handleDrawer: _handleDrawer),
-                  buildTransition: (animation, _, child) => FadeTransition(
-                    opacity: animation,
+                  buildTransition: (animation, _, child) => SlideTransition(
+                    position: animation.drive(
+                      Tween(begin: Offset(1.0, 0.0), end: Offset.zero).chain(
+                        CurveTween(curve: Curves.ease),
+                      ),
+                    ),
                     child: child,
                   ),
+                  stackedRoutes: [
+                    VWidget(
+                      path: 'write',
+                      widget: WriteHappinessPage(),
+                      buildTransition: (animation, _, child) => SlideTransition(
+                        position: animation.drive(
+                          Tween(begin: Offset(0.0, 1.0), end: Offset.zero)
+                              .chain(
+                            CurveTween(curve: Curves.ease),
+                          ),
+                        ),
+                        child: child,
+                      ),
+                    ),
+                  ],
                 ),
               ],
-            ),
-            VWidget(
-              path: '/write',
-              widget: WriteHappinessPage(),
-              buildTransition: (animation, _, child) => SlideTransition(
-                position: animation.drive(
-                  Tween(begin: Offset(0.0, 1.0), end: Offset.zero).chain(
-                    CurveTween(curve: Curves.ease),
-                  ),
-                ),
-                child: child,
-              ),
             ),
           ],
         ),

@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - image_picker (0.0.1):
+  - image_picker_ios (0.0.1):
     - Flutter
   - kakao_flutter_sdk (0.7.1):
     - Flutter
@@ -8,45 +8,45 @@ PODS:
     - Flutter
   - package_info_plus (0.4.5):
     - Flutter
-  - shared_preferences (0.0.1):
+  - shared_preferences_ios (0.0.1):
     - Flutter
-  - url_launcher (0.0.1):
+  - url_launcher_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - kakao_flutter_sdk (from `.symlinks/plugins/kakao_flutter_sdk/ios`)
   - move_to_background (from `.symlinks/plugins/move_to_background/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
-  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
-  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  image_picker:
-    :path: ".symlinks/plugins/image_picker/ios"
+  image_picker_ios:
+    :path: ".symlinks/plugins/image_picker_ios/ios"
   kakao_flutter_sdk:
     :path: ".symlinks/plugins/kakao_flutter_sdk/ios"
   move_to_background:
     :path: ".symlinks/plugins/move_to_background/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
-  shared_preferences:
-    :path: ".symlinks/plugins/shared_preferences/ios"
-  url_launcher:
-    :path: ".symlinks/plugins/url_launcher/ios"
+  shared_preferences_ios:
+    :path: ".symlinks/plugins/shared_preferences_ios/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  image_picker: 9aa50e1d8cdacdbed739e925b7eea16d014367e6
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   kakao_flutter_sdk: b783e0a36aa17736f51457e0fc45e4a718161d38
   move_to_background: 39a5b79b26d577b0372cbe8a8c55e7aa9fcd3a2d
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
-  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
-  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+  shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
+  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
 
-PODFILE CHECKSUM: 51e4c8887d0e8434a3595721a3afaff90cc63499
+PODFILE CHECKSUM: 64a2619f0d530044fffcc226533cb54152a5f3c3
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3
